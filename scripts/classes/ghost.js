@@ -1,8 +1,11 @@
+import { Entity } from './entity.js';
+
 export class Ghost extends Entity {
-    constructor(pos_x, pos_y) {
+    constructor(pos_x, pos_y, id) {
         super(pos_x, pos_y);
         this.speed = 1;
         this.direction = -1;
+        this.id = id;
         this.ghost = true;
         //image of the ghost (later)
         this.image = new Image();

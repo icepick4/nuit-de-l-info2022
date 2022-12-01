@@ -1,7 +1,9 @@
 import { infosButton, settingsButton, startButton } from './constants.js';
 
+import { Board } from './classes/board.js';
+
 startButton.addEventListener('click', () => {
-    console.log('start');
+    start();
 });
 
 settingsButton.addEventListener('click', () => {
@@ -12,18 +14,24 @@ infosButton.addEventListener('click', () => {
     console.log('infos');
 });
 
+let walls;
+let emptyCase;
+let pacmanSpeed;
+let ghostSpeed;
+let ghostNumber;
+
 async function loadLevel(id) {
     try {
         let response = await fetch('levels/' + id + '.json');
 
         if (response.ok) {
             let data = await response.json();
-
             walls = data.walls;
+            console.log(walls);
             emptyCase = data.emptyCase;
             pacmanSpeed = data.pacmanSpeed;
             ghostSpeed = data.ghostSpeed;
-            ghosts = data.ghostNumber;
+            ghostNumber = data.ghostNumber;
         } else {
             throw new Error('Response error.');
         }
@@ -33,29 +41,9 @@ async function loadLevel(id) {
 }
 
 function start() {
-    loadLevel(1);
-}
-
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    //draw walls
-    for (let i = 0; i < walls.length; i++) {
-        ctx.drawImage(wallImage, walls[i].x * 32, walls[i].y * 32);
-    }
-
-    //draw empty cases
-    for (let i = 0; i < emptyCase.length; i++) {
-        ctx.drawImage(emptyCaseImage, emptyCase[i].x * 32, emptyCase[i].y * 32);
-    }
-
-    //draw pacman
-    ctx.drawImage(pacmanImage, pacman.pos_x * 32, pacman.pos_y * 32);
-
-    //draw ghosts
-    for (let i = 0; i < ghosts.length; i++) {
-        ctx.drawImage(ghosts[i], ghosts[i].x * 32, ghosts[i].y * 32);
-    }
-
-    requestAnimationFrame(draw);
+    loadLevel(1).then(() => {
+        let board = new Board(walls, emptyCase);
+        board.initLevel();
+        board.drawBoardCanvas();
+    });
 }
