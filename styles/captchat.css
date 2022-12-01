@@ -1,0 +1,59 @@
+
+.captchat{
+  font-family: sans-serif;
+  text-transform: uppercase;
+  display: flex;
+  border: 2px solid black;
+  width: fit-content;
+  border-radius: 10px;
+  padding: 5px;
+  gap: 5px;
+  cursor: default;
+
+}
+
+.captchat p{
+  margin: 0px;
+}
+
+.check_valide{
+  animation:check .5s  cubic-bezier(.99,-.1,.01,1.02);
+  stroke-dashoffset: 0;
+
+}
+
+@keyframes check {
+  from {
+        stroke-dashoffset: 100;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+}
+
+
+
+.captchat_select{
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 2px black solid;
+  border-radius: 15px;
+  padding: 15px;
+  grid-gap: 8px;
+  background-color: lightcyan;
+}
+
+.captchat_select img{
+  border: 3px darkgray solid;
+  height: 80%;
+  margin: auto;
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.captchat_select img.selected{
+  border: 5px darkblue solid;
+  }
