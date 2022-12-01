@@ -1,0 +1,12 @@
+{
+    "walls":[
+        [1,1],
+        [2,2]
+    ],
+    "emptyCase":[
+        [0,5]
+    ],
+    "pacmanSpeed":1,
+    "ghostSpeed":1,
+    "ghostNumber":4
+}
