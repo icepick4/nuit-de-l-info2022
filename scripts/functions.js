@@ -12,11 +12,11 @@ export function increaseGhostsSpeed(ghosts, speed) {
     });
 }
 
-export function getGhosts() {
+export function getGhosts(ghostNumber, ghostSpeed) {
     let ghosts = [];
 
     for (let i = 0; i < ghostNumber; i++) {
-        let ghost = new Ghost(canvas.width, canvas.hight, i);
+        let ghost = new Ghost(canvas.width, canvas.hight, i, ghostSpeed);
         ghosts.push(ghost);
     }
 

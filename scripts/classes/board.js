@@ -2,8 +2,8 @@ import {
     canvas,
     caseWidth,
     context,
-    emptyCaseImage,
     ghostImage,
+    pacGumImage,
     pacmanImage,
     wallImage
 } from '../constants.js';
@@ -22,8 +22,8 @@ export class Board {
 
     initBoard() {
         //parse the datas from the boardData
-        for (let i = 0; i < 21; i++) {
-            for (let j = 0; j < 31; j++) {
+        for (let i = 0; i < this.board.length; i++) {
+            for (let j = 0; j < this.board[i].length; j++) {
                 if (i == 0 || i == 20 || j == 0 || j == 30) {
                     this.board[i][j] = 'WALL';
                 } else if (
@@ -63,28 +63,22 @@ export class Board {
         this.board = [];
     }
 
-    setCase(x, y, value) {
+    setCase(entity) {
         //set the case value
         //'PACMAN' OR 'GHOST' OR 'EMPTY' OR 'WALL'
-        this.board[x][y] = value;
+        let pos_x = entity.pos_x;
+        let pos_y = entity.pos_y;
+        this.board[pos_y][pos_x] = entity.type;
     }
 
     drawBoardCanvas() {
         context.clearRect(0, 0, canvas.width, canvas.height);
         //draw the board
-        for (let i = 0; i < 21; i++) {
-            for (let j = 0; j < 31; j++) {
+        for (let i = 0; i < this.board.length; i++) {
+            for (let j = 0; j < this.board[i].length; j++) {
                 if (this.board[i][j] == 'WALL') {
                     context.drawImage(
                         wallImage,
-                        j * caseWidth,
-                        i * caseWidth,
-                        caseWidth,
-                        caseWidth
-                    );
-                } else if (this.board[i][j] == 'EMPTY') {
-                    context.drawImage(
-                        emptyCaseImage,
                         j * caseWidth,
                         i * caseWidth,
                         caseWidth,
@@ -101,6 +95,14 @@ export class Board {
                 } else if (this.board[i][j] == 'GHOST') {
                     context.drawImage(
                         ghostImage,
+                        j * caseWidth,
+                        i * caseWidth,
+                        caseWidth,
+                        caseWidth
+                    );
+                } else if (this.board[i][j] == 'PAC_GUM') {
+                    context.drawImage(
+                        pacGumImage,
                         j * caseWidth,
                         i * caseWidth,
                         caseWidth,

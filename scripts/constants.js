@@ -20,3 +20,10 @@ export const wallImage = document.getElementById('wall');
 export const emptyCaseImage = document.getElementById('emptyCase');
 export const pacmanImage = document.getElementById('pacman');
 export const ghostImage = document.getElementById('ghost');
+export const pacGumImage = document.getElementById('pacGum');
+export const pacPoint = document.getElementById('pacPoint');
+
+export const UP = 38;
+export const LEFT = 37;
+export const DOWN = 40;
+export const RIGHT = 39;
