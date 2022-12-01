@@ -23,13 +23,12 @@ function captchat(argument) {
   checkBox.querySelector("#check_capt").classList.remove("check_valide")
 
 
-  console.log(capt);
+
 
   for (var i = 0; i < 9; i++) {
     if (i!==g){
     let index = Math.floor(Math.random()*bb.length)
-    console.log(index);
-    console.log(bb);
+
     let img_path = bb[index];
     let img = document.createElement("img")
     img.src="assets/captchat/"+img_path
@@ -41,8 +40,7 @@ function captchat(argument) {
     capt.appendChild(img);
   }else{
     let index = Math.floor(Math.random()*gg.length)
-    console.log(index);
-    console.log(gg);
+
     let img_path = gg[index];
     let img = document.createElement("img")
     img.src="assets/captchat/"+img_path
@@ -59,8 +57,15 @@ function captchat(argument) {
   let btn = document.createElement("button")
   btn.innerHTML="Valider"
   btn.addEventListener("click",validate)
-
   capt.appendChild(btn)
+
+
+  let btn_close = document.createElement("button")
+  btn_close.classList.add("close")
+  btn_close.innerHTML="X"
+  btn_close.addEventListener("click",close)
+
+  capt.appendChild(btn_close)
   document.body.appendChild(capt);
 }
 
@@ -84,6 +89,7 @@ function validate(ev){
   if (selected.length === 1 && ggg.includes(selected[0])){
 
     checkBox.querySelector("#check_capt").classList.add("check_valide")
+    checkBox.style.backgroundColor="lightgreen";
   }else{
     checkBox.style.backgroundColor="red";
     checkBox.querySelector("#check_capt").classList.remove("check_valide")
@@ -91,5 +97,11 @@ function validate(ev){
 
   document.body.removeChild(document.querySelector('.captchat_select'));
 
+}
+
+function close(ev) {
+  //checkBox.style.backgroundColor="red";
+  checkBox.querySelector("#check_capt").classList.remove("check_valide")
+  document.body.removeChild(document.querySelector('.captchat_select'));
 }
 
