@@ -52,6 +52,7 @@
   margin: auto;
   border-radius: 15px;
   padding: 5px;
+  user-select: none;
 }
 
 .captchat_select img.selected{
