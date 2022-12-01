@@ -58,3 +58,12 @@
 .captchat_select img.selected{
   border: 5px darkblue solid;
   }
+
+.captchat_select button{
+  border: none;
+  background-color: blue;
+  width: 3fr;
+  color: white;
+  border-radius: 15px;
+  font-size: 20px;
+}
