@@ -10,8 +10,7 @@ import {
 
 import { Board } from './classes/board.js';
 import { Pacman } from './classes/pacman.js';
-import { getGhosts } from './functions.js';
-
+import { getGhosts, getPacGums } from './functions.js';
 startButton.addEventListener('click', () => {
     start();
 });
@@ -28,8 +27,9 @@ let walls;
 let emptyCase;
 let pacmanSpeed;
 let ghostSpeed;
-let ghostNumber;
+let ghostPosition;
 let pacmanPosition;
+let pacGumPosition;
 let keys = [];
 
 async function loadLevel(id) {
@@ -39,14 +39,12 @@ async function loadLevel(id) {
         if (response.ok) {
             let data = await response.json();
             walls = data.walls;
-            console.log(walls);
             emptyCase = data.emptyCase;
             pacmanSpeed = data.pacmanSpeed;
             pacmanPosition = data.pacmanPosition;
-            console.log(pacmanPosition);
+            pacGumPosition = data.pacGumPosition;
             ghostSpeed = data.ghostSpeed;
-            ghostNumber = data.ghostNumber;
-            console.log(ghostNumber);
+            ghostPosition = data.ghostPosition;
         } else {
             throw new Error('Response error.');
         }
@@ -83,13 +81,20 @@ function start() {
     loadLevel(1).then(() => {
         let board = new Board(walls, emptyCase);
         board.initLevel();
-        board.setCase(pacman);
         const pacman = new Pacman(
             pacmanPosition[0],
             pacmanPosition[1],
             pacmanSpeed
         );
-        const ghosts = getGhosts(ghostNumber, ghostSpeed);
+        board.setCase(pacman);
+        const ghosts = getGhosts(ghostSpeed, ghostPosition);
+        for (let i = 0; i < ghosts.length; i++) {
+            board.setCase(ghosts[i]);
+        }
+        const pacGums = getPacGums(pacGumPosition);
+        for (let i = 0; i < pacGumPosition.length; i++) {
+            board.setCase(pacGums[i]);
+        }
         board.drawBoardCanvas();
     });
 }

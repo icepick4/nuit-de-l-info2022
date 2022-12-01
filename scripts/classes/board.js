@@ -65,9 +65,11 @@ export class Board {
 
     setCase(entity) {
         //set the case value
-        //'PACMAN' OR 'GHOST' OR 'EMPTY' OR 'WALL'
+        //'PACMAN' OR 'GHOST' OR 'EMPTY' OR 'WALL' OR 'PAC_GUM'
         let pos_x = entity.pos_x;
         let pos_y = entity.pos_y;
+        console.log(entity.type);
+        console.log(pos_x, pos_y);
         this.board[pos_y][pos_x] = entity.type;
     }
 

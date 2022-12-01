@@ -19,7 +19,7 @@ for (let i = 0; i < mobs.length; i++) {
 export const wallImage = document.getElementById('wall');
 export const emptyCaseImage = document.getElementById('emptyCase');
 export const pacmanImage = document.getElementById('pacman');
-export const ghostImage = document.getElementById('ghost');
+export const ghostImage = document.getElementById('sida');
 export const pacGumImage = document.getElementById('pacGum');
 export const pacPoint = document.getElementById('pacPoint');
 
