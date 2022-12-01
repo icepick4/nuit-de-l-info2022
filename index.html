@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nuit de l'info 2022</title>
     <script src="scripts/main.js" type="module" defer></script>
-    <link rel="stylesheet" href="styles/main.css">
-</head>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
 
-<body>
-    <h1>
-        Nuit de l'info 2022
-    </h1>
+  <body>
+    <h1>Nuit de l'info 2022</h1>
     <div class="content">
-        <canvas id="canvas" width="992" height="672"></canvas>
-        <div class="buttons">
-            <button id="start">Start</button>
-            <button id="settings">Settings</button>
-            <button id="infos">Infos</button>
-        </div>
+      <canvas
+        id="canvas"
+        width="992"
+        height="672"
+        style="display: none"
+      ></canvas>
+      <div class="buttons">
+        <img src="./assets/menuTitle.svg" />
+        <button id="start"></button>
+        <button id="settings"></button>
+        <button id="infos"></button>
+      </div>
     </div>
     <div class="hidden-images">
-        <div class="mobs">
-            <img id="sida" src="assets/ghosts/sida.svg" />
-        </div>
-        <img id="pacman" src="assets/pacman.svg" />
-        <img id="wall" src="assets/wall.svg" />
-        <img id="emptyCase" src="assets/emptyCase.svg" />
-        <img id="pacGum" src="assets/pacGum.svg" />
-        <img id="pacPoint" src="assets/pacPoint.svg" />
+      <div class="mobs">
+        <img id="sida" src="assets/ghosts/sida.svg" />
+      </div>
+      <img id="pacman" src="assets/pacman.svg" />
+      <img id="wall" src="assets/wall.svg" />
+      <img id="emptyCase" src="assets/emptyCase.svg" />
+      <img id="pacGum" src="assets/pacGum.svg" />
+      <img id="pacPoint" src="assets/pacPoint.svg" />
     </div>
-</body>
-
+  </body>
 </html>
