@@ -1,39 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nuit de l'info 2022</title>
     <script src="scripts/main.js" type="module" defer></script>
     <link rel="stylesheet" href="styles/main.css" />
-  </head>
+</head>
 
-  <body>
-    <h1>Nuit de l'info 2022</h1>
+<body>
+    <div id="background"></div>
+    <div class="capote-container">
+        <img class="capote" src="./assets/pacGum.svg"></img>
+        <img class="capote" src="./assets/pacGum.svg"></img>
+        <img class="capote" src="./assets/pacGum.svg"></img>
+    </div>
+    <div class="capote-container"></div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Modal Header</h2>
+                <span class="close" id="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the Modal Body</p>
+                <p>Some other text...</p>
+            </div>
+            <div class="modal-footer">
+                <h3>Modal Footer</h3>
+            </div>
+        </div>
+    </div>
     <div class="content">
-      <canvas
-        id="canvas"
-        width="992"
-        height="672"
-        style="display: none"
-      ></canvas>
-      <div class="buttons">
-        <img src="./assets/menuTitle.svg" />
-        <button id="start"></button>
-        <button id="settings"></button>
-        <button id="infos"></button>
-      </div>
+        <canvas id="canvas" width="992" height="672" style="display: none"></canvas>
+        <div class="buttons">
+            <img src="./assets/menuTitle.svg" id="gameName" />
+            <button id="start"></button>
+            <button id="settings"></button>
+            <button id="infos"></button>
+        </div>
     </div>
     <div class="hidden-images">
-      <div class="mobs">
-        <img id="sida" src="assets/ghosts/sida.svg" />
-      </div>
-      <img id="pacman" src="assets/pacman.svg" />
-      <img id="wall" src="assets/wall.svg" />
-      <img id="emptyCase" src="assets/emptyCase.svg" />
-      <img id="pacGum" src="assets/pacGum.svg" />
-      <img id="pacPoint" src="assets/pacPoint.svg" />
+        <div class="mobs">
+            <img id="sida" src="assets/ghosts/sida.svg" />
+        </div>
+        <img id="pacman" src="assets/pacman.svg" />
+        <img id="wall" src="assets/wall.svg" />
+        <img id="emptyCase" src="assets/emptyCase.svg" />
+        <img id="pacGum" src="assets/pacGum.svg" />
     </div>
-  </body>
+</body>
+
 </html>

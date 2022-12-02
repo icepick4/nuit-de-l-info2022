@@ -17,7 +17,7 @@ export class Board {
             this.board[i] = new Array(31);
         }
         this.initBoard();
-        console.log(this.board);
+        this.ghosts = [];
     }
 
     initBoard() {
@@ -37,9 +37,12 @@ export class Board {
                 ) {
                     this.board[i][j] = 'WALL';
                 } else {
-                    this.board[i][j] = 'EMPTY';
+                    this.board[i][j] = 'POINT';
                 }
                 if (i == 8 && j == 15) {
+                    this.board[i][j] = 'EMPTY';
+                }
+                if (i > 8 && i < 12 && j > 13 && j < 17) {
                     this.board[i][j] = 'EMPTY';
                 }
             }
@@ -68,8 +71,6 @@ export class Board {
         //'PACMAN' OR 'GHOST' OR 'EMPTY' OR 'WALL' OR 'PAC_GUM'
         let pos_x = entity.pos_x;
         let pos_y = entity.pos_y;
-        console.log(entity.type);
-        console.log(pos_x, pos_y);
         this.board[pos_y][pos_x] = entity.type;
     }
 
@@ -94,14 +95,6 @@ export class Board {
                         caseWidth,
                         caseWidth
                     );
-                } else if (this.board[i][j] == 'GHOST') {
-                    context.drawImage(
-                        ghostImage,
-                        j * caseWidth,
-                        i * caseWidth,
-                        caseWidth,
-                        caseWidth
-                    );
                 } else if (this.board[i][j] == 'PAC_GUM') {
                     context.drawImage(
                         pacGumImage,
@@ -110,12 +103,91 @@ export class Board {
                         caseWidth,
                         caseWidth
                     );
+                } else if (this.board[i][j] == 'POINT') {
+                    context.beginPath();
+                    context.arc(
+                        j * caseWidth + 15,
+                        i * caseWidth + 15,
+                        3.3,
+                        0,
+                        2 * Math.PI
+                    );
+                    context.fillStyle = '#CC6699';
+                    context.fill();
                 }
             }
+        }
+        for (let i = 0; i < this.ghosts.length; i++) {
+            let currentGhost = this.ghosts[i];
+            context.drawImage(
+                ghostImage,
+                currentGhost.pos_x * caseWidth,
+                currentGhost.pos_y * caseWidth,
+                caseWidth,
+                caseWidth
+            );
+        }
+    }
+
+    canMove(entity) {
+        //check if the entity can move
+        let pos_x = entity.pos_x;
+        let pos_y = entity.pos_y;
+        if (entity.direction == 0) {
+            pos_x -= 1;
+        } else if (entity.direction == 1) {
+            pos_x += 1;
+        } else if (entity.direction == 2) {
+            pos_y -= 1;
+        } else if (entity.direction == 3) {
+            pos_y += 1;
+        }
+        if (this.board[pos_y][pos_x] == 'WALL') {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    isPacGum(entity) {
+        //check if the entity is on a pac gum
+        let pos_x = entity.pos_x;
+        let pos_y = entity.pos_y;
+        if (this.board[pos_y][pos_x] == 'PAC_GUM') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    isPoint(entity) {
+        //check if the entity is on a point
+        let pos_x = entity.pos_x;
+        let pos_y = entity.pos_y;
+        if (this.board[pos_y][pos_x] == 'POINT') {
+            return true;
+        } else {
+            return false;
         }
     }
 
     resetBoareCanvas() {
         context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    checkWin() {
+        let count = 0;
+        for (let i = 0; i < this.board.length; i++) {
+            for (let j = 0; j < this.board[i].length; j++) {
+                if (this.board[i][j] == 'POINT') {
+                    count++;
+                }
+            }
+        }
+        if (count == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
