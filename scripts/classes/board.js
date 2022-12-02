@@ -39,7 +39,8 @@ export class Board {
                 ) {
                     this.board[i][j] = 'WALL';
                 } else {
-                    this.board[i][j] = 'POINT';
+                    //point for pacman
+                    this.board[i][j] = 'EMPTY';
                 }
                 if (i == 8 && j == 15) {
                     this.board[i][j] = 'EMPTY';
@@ -50,6 +51,9 @@ export class Board {
                 //temporary walls
                 if (i < 3 || i > 17 || j < 3 || j > 27) {
                     this.board[i][j] = 'WALL';
+                }
+                if (i == 5 && j == 5) {
+                    this.board[i][j] = 'POINT';
                 }
             }
         }
@@ -223,6 +227,17 @@ export class Board {
         }
     }
 
+    isPacman(entity) {
+        //check if the entity is on pacman
+        let pos_x = entity.pos_x;
+        let pos_y = entity.pos_y;
+        if (this.pacman.pos_x == pos_x && this.pacman.pos_y == pos_y) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     resetBoareCanvas() {
         context.clearRect(0, 0, canvas.width, canvas.height);
     }
@@ -240,18 +255,6 @@ export class Board {
             return true;
         } else {
             return false;
-        }
-    }
-
-    removeGhost(pacman) {
-        for (let i = 0; i < this.ghosts.length; i++) {
-            let currentGhost = this.ghosts[i];
-            if (
-                currentGhost.pos_x == pacman.pos_x &&
-                currentGhost.pos_y == pacman.pos_y
-            ) {
-                return this.ghosts[i];
-            }
         }
     }
 }

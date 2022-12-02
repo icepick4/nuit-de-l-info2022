@@ -6,7 +6,6 @@ export class Ghost extends Entity {
         this.speed = speed;
         this.direction = -1;
         this.id = id;
-        this.ghost = true;
         this.type = 'GHOST';
         this.defaultPos = [pos_x, pos_y];
         this.canMove = true;
@@ -24,6 +23,7 @@ export class Ghost extends Entity {
     }
 
     revive() {
+        console.log('revive');
         this.canMove = true;
     }
 

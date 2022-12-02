@@ -21,6 +21,7 @@ html {
 #canvas {
     border-radius: 15px;
     background-color: #ede498;
+    margin-top: 50px;
 }
 
 .content {
@@ -192,12 +193,12 @@ button {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100px;
+    width: 200px;
     z-index: -2;
 }
 
 #fond {
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(5px);
     background-color: rgba(182, 182, 182, 0.2);
     position: absolute;
     width: 100vw;
@@ -226,7 +227,7 @@ button {
 #img4 {
     top: 400px;
     left: 220px;
-    animation-delay: 10000ms;
+    animation-delay: 1000ms;
 }
 
 .imgBack {

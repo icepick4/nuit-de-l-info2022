@@ -27,7 +27,7 @@ startButton.addEventListener('click', () => {
 
 settingsButton.addEventListener('click', () => {
     console.log('settings');
-    document.location.href="/credits.html"
+    document.location.href = '/credits.html';
 });
 
 infosButton.addEventListener('click', () => {
@@ -234,13 +234,12 @@ function update() {
             ghosts[i].moveRight();
         }
         //if ghost move into pacman
-        if (
-            ghosts[i].pos_x == pacman.pos_x &&
-            ghosts[i].pos_y == pacman.pos_y
-        ) {
+        if (board.isPacman(ghosts[i])) {
             if (pacman.isPoweredUp()) {
                 //eat ghost
-                board.removeGhost(ghosts[i]);
+                ghosts[i].die();
+                last_x = ghosts[i].pos_x;
+                last_y = ghosts[i].pos_y;
                 score += 100;
             } else {
                 //game over
@@ -293,3 +292,5 @@ function reset() {
     ghosts = [];
     clearInterval(interval);
 }
+
+function initQuestion() {}
