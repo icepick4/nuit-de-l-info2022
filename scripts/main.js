@@ -1,4 +1,5 @@
 import {
+    capotes,
     close,
     DOWN,
     gameName,
@@ -26,7 +27,7 @@ startButton.addEventListener('click', () => {
 
 settingsButton.addEventListener('click', () => {
     console.log('settings');
-    toggleModal();
+    openModal();
 });
 
 infosButton.addEventListener('click', () => {
@@ -40,9 +41,41 @@ close.addEventListener('click', () => {
     toggleModal();
 });
 
+let title;
+let desc;
+
 function toggleModal() {
     background.classList.toggle('show');
     modal.classList.toggle('show');
+    for (let index = 0; index < capotes.length; index++) {
+        const element = capotes[index];
+        element.classList.toggle('active');
+    }
+}
+
+async function loadInfo(id) {
+    try {
+        let response = await fetch('data/mst.json');
+        if (response.ok) {
+            let data = await response.json();
+            title = data.data[id].name;
+            desc = data.data[id].description;
+        } else {
+            throw new Error('Response error.');
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function openModal(id) {
+    loadInfo(id).then(() => {
+        console.log();
+        modal.children[0].children[0].children[0].innerText =
+            "Dis moi PacSida, qu'est ce que " + title;
+        modal.children[0].children[1].children[0].innerHTML = desc;
+        toggleModal();
+    });
 }
 
 let walls;
@@ -59,6 +92,7 @@ let ghosts = [];
 let startPlaying = false;
 let lastDirection = null;
 let score;
+let interval;
 
 async function loadLevel(id) {
     try {
@@ -114,9 +148,9 @@ document.body.addEventListener('keydown', updateKeyDown);
 
 function start() {
     loadLevel(1).then(() => {
-        board = new Board(walls, emptyCase);
-        board.initLevel();
         pacman = new Pacman(pacmanPosition[0], pacmanPosition[1], pacmanSpeed);
+        board = new Board(walls, emptyCase, pacman);
+        board.initLevel();
         board.setCase(pacman);
         ghosts = getGhosts(ghostSpeed, ghostPosition);
         for (let i = 0; i < ghosts.length; i++) {
@@ -144,6 +178,25 @@ function update() {
     } else if (keys[RIGHT] || lastDirection == RIGHT) {
         pacman.moveRight();
     }
+    //check if pacman eat a pacgum
+    if (board.isPacGum(pacman)) {
+        pacman.atePowerUp();
+        //pacman is poweredUp for 10 seconds
+        setTimeout(() => {
+            pacman.lostPowerUp();
+        }, 20000);
+    }
+    //check if pacman eat a ghost
+    if (board.isGhost(pacman)) {
+        if (pacman.isPoweredUp()) {
+            //eat ghost
+            board.removeGhost(pacman);
+            score += 100;
+        } else {
+            //game over
+            return false;
+        }
+    }
     //check if pacman can move
     if (board.canMove(pacman)) {
         board.setCase(pacman);
@@ -152,14 +205,9 @@ function update() {
         pacman.pos_x = last_x;
         pacman.pos_y = last_y;
     }
-    //check if pacman eat a pacgum
-    if (board.isPacGum(pacman)) {
-        pacman.atePowerUp();
-    }
     //check if pacman eat a point
     if (board.isPoint(pacman)) {
         score++;
-        console.log(score);
     }
 
     for (let i = 0; i < ghosts.length; i++) {
@@ -175,17 +223,61 @@ function update() {
         } else if (random == 3) {
             ghosts[i].moveRight();
         }
-        if (board.canMove(ghosts[i])) {
-        } else {
+        //if ghost move into pacman
+        if (
+            ghosts[i].pos_x == pacman.pos_x &&
+            ghosts[i].pos_y == pacman.pos_y
+        ) {
+            if (pacman.isPoweredUp()) {
+                //eat ghost
+                board.removeGhost(ghosts[i]);
+                score += 100;
+            } else {
+                //game over
+                return false;
+            }
+        }
+        //check if ghost can move
+        if (!board.canMove(ghosts[i]) || !ghosts[i].canMove) {
             ghosts[i].pos_x = last_x;
             ghosts[i].pos_y = last_y;
         }
     }
+
+    if (board.checkWin()) {
+        return true;
+    }
+    return 'continue';
 }
 
 function step() {
-    setInterval(function () {
-        update();
+    interval = setInterval(function () {
+        let status = update();
+        if (status == false) {
+            board.drawBoardCanvas();
+            clearInterval(interval);
+            openModal(board.getGhost(pacman));
+            alert('Game Over');
+            reset();
+        } else if (status == true) {
+            board.drawBoardCanvas();
+            clearInterval(interval);
+            alert('You won');
+            reset();
+        }
         board.drawBoardCanvas();
-    }, 250);
+    }, 200);
+}
+
+function reset() {
+    startPlaying = false;
+    startButton.style.display = 'block';
+    infosButton.style.display = 'block';
+    settingsButton.style.display = 'block';
+    gameName.style.display = 'block';
+    canvas.style.display = 'none';
+    board = null;
+    pacman = null;
+    ghosts = [];
+    clearInterval(interval);
 }
