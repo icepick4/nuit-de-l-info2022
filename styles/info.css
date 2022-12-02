@@ -1,6 +1,7 @@
 @font-face {
   font-family: "Main font";
-  src: url("../assets/fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
+  src: url("../assets/fonts/Inter-VariableFont_slnt,wght.ttf")
+    format("truetype");
 }
 
 * {
@@ -14,23 +15,33 @@ body {
 }
 
 .main {
-  background-color: rgba(255, 255, 255, .5);
+  background-color: rgba(255, 255, 255, 0.5);
   width: 50%;
   border-radius: 15px;
   padding: 10px;
   margin: auto;
 }
 
+u {
+  color: #ffc700;
+}
 h1 {
   margin: auto;
   width: fit-content;
+  font-weight: bold;
+  color: greenyellow;
 }
 
+h2 {
+  color: #f632d2;
+  font-weight: bold;
+}
 h3 {
   padding: 0px;
   text-transform: capitalize;
+  color: aqua;
+  font-weight: bold;
 }
-
 
 .nav {
   position: fixed;
@@ -41,7 +52,6 @@ h3 {
 }
 
 button#back {
-
   background-size: cover;
   border: none;
   background-repeat: no-repeat;
@@ -82,7 +92,7 @@ button:hover {
   left: 50%;
   transform: translate(-50%, 0%);
   border-radius: 15px;
-  border: 2px solid #C5BF38;
+  border: 2px solid #c5bf38;
   background-color: white;
   padding: 2rem;
   display: flex;
@@ -128,39 +138,38 @@ button:hover {
   top: 150px;
 }
 
-
 .capote {
-    width: 50px;
-    position: relative;
-    transition: left 0.8s;
+  width: 50px;
+  position: relative;
+  transition: left 0.8s;
 }
 
 .capote:nth-child(1) {
-    left: -50px;
+  left: -50px;
 }
 
 .capote:nth-child(2) {
-    left: -100px;
+  left: -100px;
 }
 
 .capote:nth-child(3) {
-    left: -150px;
+  left: -150px;
 }
 
 .capote.active {
-    left: 0;
+  left: 0;
 }
 
 .capote-container {
-    transform: rotate(90deg);
-    transform-origin: top left;
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 30%;
-    z-index: 2;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 30%;
+  z-index: 2;
 }
 
 .capote-container.second {
-    left: 75%;
+  left: 75%;
 }
