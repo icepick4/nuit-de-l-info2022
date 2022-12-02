@@ -208,24 +208,25 @@ button {
 #img1 {
     top: 50px;
     left: 100px;
-    animation-delay: 500ms;
+    animation-delay: -50ms;
 }
 
 #img2 {
     top: 300px;
     left: 50px;
+    animation-delay: 5000ms;
 }
 
 #img3 {
     top: 250px;
     left: 600px;
-    animation-delay: 100ms;
+    animation-delay: -1240ms;
 }
 
 #img4 {
     top: 400px;
     left: 220px;
-    animation-delay: 200ms;
+    animation-delay: 10000ms;
 }
 
 .imgBack {

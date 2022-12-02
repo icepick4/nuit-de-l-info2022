@@ -47,6 +47,10 @@ export class Board {
                 if (i > 8 && i < 12 && j > 13 && j < 17) {
                     this.board[i][j] = 'EMPTY';
                 }
+                //temporary walls
+                if (i < 3 || i > 17 || j < 3 || j > 27) {
+                    this.board[i][j] = 'WALL';
+                }
             }
         }
     }
@@ -131,7 +135,6 @@ export class Board {
         }
         for (let i = 0; i < this.ghosts.length; i++) {
             let currentGhost = this.ghosts[i];
-            console.log(currentGhost.pos_x, currentGhost.pos_y);
             context.drawImage(
                 ghostImages[currentGhost.id],
                 currentGhost.pos_x * caseWidth,
@@ -241,14 +244,13 @@ export class Board {
     }
 
     removeGhost(pacman) {
-        console.log('remove ghost');
         for (let i = 0; i < this.ghosts.length; i++) {
             let currentGhost = this.ghosts[i];
             if (
                 currentGhost.pos_x == pacman.pos_x &&
                 currentGhost.pos_y == pacman.pos_y
             ) {
-                this.ghosts[i].die();
+                return this.ghosts[i];
             }
         }
     }

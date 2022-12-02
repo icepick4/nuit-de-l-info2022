@@ -71,7 +71,6 @@ async function loadInfo(id) {
 
 function openModal(id) {
     loadInfo(id).then(() => {
-        console.log();
         modal.children[0].children[0].children[0].innerText =
             "Dis moi PacSida, qu'est ce que " + title;
         modal.children[0].children[1].children[0].innerHTML = desc;
@@ -126,7 +125,6 @@ function updateKeyUp(e) {
     ) {
         if (!startPlaying) {
             startPlaying = true;
-            console.log('start');
             step();
         }
         lastDirection = e.keyCode;
@@ -136,7 +134,6 @@ function updateKeyUp(e) {
 document.body.addEventListener('keyup', updateKeyUp);
 
 function updateKeyDown(e) {
-    console.log(e.keyCode);
     if (
         (e.keyCode == UP) |
         (e.keyCode == LEFT) |
@@ -189,13 +186,21 @@ function update() {
         //pacman is poweredUp for 10 seconds
         setTimeout(() => {
             pacman.lostPowerUp();
-        }, 20000);
+        }, 100000);
     }
     //check if pacman eat a ghost
     if (board.isGhost(pacman)) {
         if (pacman.isPoweredUp()) {
             //eat ghost
-            board.removeGhost(pacman);
+            for (let i = 0; i < ghosts.length; i++) {
+                if (
+                    ghosts[i].pos_x == pacman.pos_x &&
+                    ghosts[i].pos_y == pacman.pos_y
+                ) {
+                    ghosts[i].die();
+                }
+            }
+
             score += 100;
         } else {
             //game over
@@ -257,7 +262,6 @@ function update() {
 
 function step() {
     interval = setInterval(function () {
-        console.log('step');
         let status = update();
         if (status == false) {
             board.drawBoardCanvas();
