@@ -9,8 +9,9 @@
 }
 
 body {
-  background-image: url("../assets/back.svg");
-  background-size: cover;
+  background-image: url("../assets/back2.svg");
+  background-repeat: repeat;
+  /*background-size: cover;*/
   color: black;
 }
 
@@ -29,7 +30,7 @@ h1 {
   margin: auto;
   width: fit-content;
   font-weight: bold;
-  color: greenyellow;
+  color: #38C558;
 }
 
 h2 {

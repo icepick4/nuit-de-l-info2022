@@ -1,11 +1,23 @@
-h2{
-    text-transform: capitalize;
+h2 {
+  text-transform: capitalize;
+  text-align: center;
+  font-size: 200%;
 }
 
-.margin_top{
+.margin_top {
+    margin: auto;
     margin-top: 100px;
 }
-button{
-    position: fixed;
-    left: 20px;
+button {
+  position: fixed;
+  left: 20px;
+}
+
+.small{
+    width: 25%;
+
+}
+
+.small p{
+    text-align: center;
 }
