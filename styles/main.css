@@ -1,258 +1,307 @@
 @font-face {
-    font-family: "Main font";
-    src: url("../assets/fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
+  font-family: "Main font";
+  src: url("../assets/fonts/Inter-VariableFont_slnt,wght.ttf")
+    format("truetype");
 }
 
 body,
 html {
-    height: 100vh;
-    width: 100vw;
-    overflow-x: hidden;
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 * {
-    font-family: "Main font";
+  font-family: "Main font";
 }
 
 .hidden-images {
-    display: none;
+  display: none;
 }
 
 #canvas {
-    border-radius: 15px;
-    background-color: #ede498;
-    margin-top: 50px;
+  border-radius: 15px;
+  background-color: #ede498;
+  margin-top: 50px;
 }
 
 .content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 button {
-    background-size: cover;
-    border: none;
-    background-repeat: no-repeat;
-    transition: transform 0.2s;
+  background-size: cover;
+  border: none;
+  background-repeat: no-repeat;
+  transition: transform 0.2s;
 }
 
 button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 body {
-    margin: 0;
+  margin: 0;
 }
 
 .buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
 }
 
 img {
-    width: 400px;
-    margin-bottom: -50px;
+  width: 400px;
+  margin-bottom: -50px;
 }
 
 #start {
-    background-image: url("../assets/playButton.svg");
-    width: 160px;
-    height: 80px;
+  background-image: url("../assets/playButton.svg");
+  width: 160px;
+  height: 80px;
 }
 
 #infos {
-    background-image: url("../assets/informationButton.svg");
-    width: 220px;
-    height: 80px;
+  background-image: url("../assets/informationButton.svg");
+  width: 220px;
+  height: 80px;
 }
 
 #settings {
-    background-image: url("../assets/settingsButton.svg");
-    width: 190px;
-    height: 80px;
+  background-image: url("../assets/settingsButton.svg");
+  width: 190px;
+  height: 80px;
 }
 
 button {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 #background {
-    opacity: 0;
-    z-index: -1;
-    height: 100vh;
-    width: 100vw;
-    background-color: #41414198;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: opacity 0.2s, z-index 0.2s;
+  opacity: 0;
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+  background-color: #41414198;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.2s, z-index 0.2s;
 }
 
 #background.show {
-    opacity: 1;
-    z-index: 1;
+  opacity: 1;
+  z-index: 1;
 }
 
 /* modal */
 .modal {
-    opacity: 0;
-    z-index: -1;
-    position: absolute;
-    top: -100px;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    border-radius: 15px;
-    border: 2px solid #C5BF38;
-    background-color: white;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    width: 60vw;
-    transition: opacity 0.8s, z-index 0.2s, top 0.8s;
+  opacity: 0;
+  z-index: -1;
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  border-radius: 15px;
+  border: 2px solid #c5bf38;
+  background-color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 60vw;
+  transition: opacity 0.8s, z-index 0.2s, top 0.8s;
 }
 
 .modal-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
 }
 
 .close {
-    width: 30px;
-    height: 30px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 3rem;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 3rem;
 }
 
 .modal.show {
-    opacity: 1;
-    z-index: 3;
-    top: 150px;
+  opacity: 1;
+  z-index: 3;
+  top: 150px;
 }
 
 .capote {
-    width: 50px;
-    position: relative;
-    transition: left 0.8s;
+  width: 50px;
+  position: relative;
+  transition: left 0.8s;
 }
 
 .capote:nth-child(1) {
-    left: -50px;
+  left: -50px;
 }
 
 .capote:nth-child(2) {
-    left: -100px;
+  left: -100px;
 }
 
 .capote:nth-child(3) {
-    left: -150px;
+  left: -150px;
 }
 
 .capote.active {
-    left: 0;
+  left: 0;
 }
 
 .capote-container {
-    transform: rotate(90deg);
-    transform-origin: top left;
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 30%;
-    z-index: 2;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 30%;
+  z-index: 2;
 }
 
 .capote-container.second {
-    left: 75%;
+  left: 75%;
 }
 
 .imgBack {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200px;
-    z-index: -2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  z-index: -2;
 }
 
 #fond {
-    backdrop-filter: blur(5px);
-    background-color: rgba(182, 182, 182, 0.2);
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
+  backdrop-filter: blur(5px);
+  background-color: rgba(182, 182, 182, 0.2);
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
 }
 
 #img1 {
-    top: 50px;
-    left: 100px;
-    animation-delay: -50ms;
+  top: 50px;
+  left: 100px;
+  animation-delay: -50ms;
 }
 
 #img2 {
-    top: 300px;
-    left: 50px;
-    animation-delay: 5000ms;
+  top: 300px;
+  left: 50px;
+  animation-delay: 5000ms;
 }
 
 #img3 {
-    top: 250px;
-    left: 600px;
-    animation-delay: -1240ms;
+  top: 250px;
+  left: 600px;
+  animation-delay: -1240ms;
 }
 
 #img4 {
-    top: 400px;
-    left: 220px;
-    animation-delay: 1000ms;
+  top: 400px;
+  left: 220px;
+  animation-delay: 1000ms;
+}
+
+#img5 {
+  top: 800px;
+  left: 1020px;
+  animation-delay: 1000ms;
+}
+
+#img6 {
+  top: 500px;
+  left: 1220px;
+  animation-delay: 1000ms;
+}
+
+#img7 {
+  top: 700px;
+  left: 520px;
+  animation-delay: 1000ms;
+}
+
+#img8 {
+  top: 200px;
+  left: 1420px;
+  animation-delay: 1000ms;
+}
+
+#img9 {
+  top: 100px;
+  left: 1020px;
+  animation-delay: 1000ms;
+}
+
+#img10 {
+  top: 600px;
+  left: 120px;
+  animation-delay: 1000ms;
+}
+
+#img11 {
+  top: 20px;
+  left: 2020px;
+  animation-delay: 1000ms;
+}
+
+#img12 {
+  top: 300px;
+  left: 120px;
+  animation-delay: 1000ms;
 }
 
 .imgBack {
-    animation: moove 22s linear infinite;
-    transform-origin: 50% 50%
+  animation: moove 22s linear infinite;
+  transform-origin: 50% 50%;
 }
 
 @keyframes moove {
-    0% {
-        transform: translateX(-50px)
-    }
+  0% {
+    transform: translateX(-50px);
+  }
 
-    25% {
-        transform: translateY(100px)
-    }
+  25% {
+    transform: translateY(100px);
+  }
 
-    50% {
-        transform: translateX(100px)
-    }
+  50% {
+    transform: translateX(100px);
+  }
 
-    75% {
-        transform: translateY(-100px)
-    }
+  75% {
+    transform: translateY(-100px);
+  }
 
-    100% {
-        transform: translateX(-50px)
-    }
+  100% {
+    transform: translateX(-50px);
+  }
 }
