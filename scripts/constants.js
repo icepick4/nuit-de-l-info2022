@@ -20,8 +20,8 @@ export const wallImage = document.getElementById('wall');
 export const emptyCaseImage = document.getElementById('emptyCase');
 export const pacmanImage = document.getElementById('pacman');
 export const pacmanCapoteImage = document.getElementById('pacmanCapote');
-export const ghostImages = document.getElementById('mobs');
-console.log(ghostImages[2]);
+export const ghostImages = document.getElementById('mobs').children;
+
 export const pacGumImage = document.getElementById('pacGum');
 export const gameName = document.getElementById('gameName');
 export const background = document.getElementById('background');

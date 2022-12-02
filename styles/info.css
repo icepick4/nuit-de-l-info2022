@@ -1,7 +1,6 @@
 @font-face {
   font-family: "Main font";
-  src: url("../assets/fonts/Inter-VariableFont_slnt,wght.ttf")
-    format("truetype");
+  src: url("../assets/fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
 }
 
 * {
@@ -14,7 +13,7 @@ body {
   color: black;
 }
 
-.main{
+.main {
   background-color: rgba(255, 255, 255, .5);
   width: 50%;
   border-radius: 15px;
@@ -22,36 +21,109 @@ body {
   margin: auto;
 }
 
-h1{
+h1 {
   margin: auto;
   width: fit-content;
 }
 
-h3{
+h3 {
   padding: 0px;
   text-transform: capitalize;
 }
 
 
-.nav{
+.nav {
   position: fixed;
   left: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
 button#back {
-    
-    background-size: cover;
-    border: none;
-    background-repeat: no-repeat;
-    transition: transform 0.2s;
-    background-image: url("../assets/retour.svg");
-    width: 220px;
-    height: 90px;
-    border-radius: 15px;
+
+  background-size: cover;
+  border: none;
+  background-repeat: no-repeat;
+  transition: transform 0.2s;
+  background-image: url("../assets/retour.svg");
+  width: 220px;
+  height: 90px;
+  border-radius: 15px;
 }
 
 button:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+#background {
+  opacity: 0;
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+  background-color: #41414198;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.2s, z-index 0.2s;
+}
+
+#background.show {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* modal */
+.modal {
+  opacity: 0;
+  z-index: -1;
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  border-radius: 15px;
+  border: 2px solid #C5BF38;
+  background-color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 60vw;
+  transition: opacity 0.8s, z-index 0.2s, top 0.8s;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.close {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 3rem;
+}
+
+.modal.show {
+  opacity: 1;
+  z-index: 3;
+  top: 150px;
 }

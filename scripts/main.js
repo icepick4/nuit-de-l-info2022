@@ -22,7 +22,7 @@ startButton.addEventListener('click', () => {
     infosButton.style.display = 'none';
     settingsButton.style.display = 'none';
     gameName.style.display = 'none';
-    start();
+    start(1);
 });
 
 settingsButton.addEventListener('click', () => {
@@ -30,11 +30,9 @@ settingsButton.addEventListener('click', () => {
     document.location.href="/credits.html"
 });
 
-
-infosButton.addEventListener("click", () => {
-  console.log("infos");
-  document.location.href="/information.html"
-
+infosButton.addEventListener('click', () => {
+    console.log('infos');
+    document.location.href = '/information.html';
 });
 
 background.addEventListener('click', () => {
@@ -96,6 +94,7 @@ let startPlaying = false;
 let lastDirection = null;
 let score;
 let interval;
+let id = 1;
 
 async function loadLevel(id) {
     try {
@@ -127,6 +126,7 @@ function updateKeyUp(e) {
     ) {
         if (!startPlaying) {
             startPlaying = true;
+            console.log('start');
             step();
         }
         lastDirection = e.keyCode;
@@ -136,6 +136,7 @@ function updateKeyUp(e) {
 document.body.addEventListener('keyup', updateKeyUp);
 
 function updateKeyDown(e) {
+    console.log(e.keyCode);
     if (
         (e.keyCode == UP) |
         (e.keyCode == LEFT) |
@@ -149,8 +150,8 @@ function updateKeyDown(e) {
 }
 document.body.addEventListener('keydown', updateKeyDown);
 
-function start() {
-    loadLevel(1).then(() => {
+function start(id) {
+    loadLevel(id).then(() => {
         pacman = new Pacman(pacmanPosition[0], pacmanPosition[1], pacmanSpeed);
         board = new Board(walls, emptyCase, pacman);
         board.initLevel();
@@ -179,6 +180,7 @@ function update() {
     } else if (keys[DOWN] || lastDirection == DOWN) {
         pacman.moveDown();
     } else if (keys[RIGHT] || lastDirection == RIGHT) {
+        console.log('right');
         pacman.moveRight();
     }
     //check if pacman eat a pacgum
@@ -255,6 +257,7 @@ function update() {
 
 function step() {
     interval = setInterval(function () {
+        console.log('step');
         let status = update();
         if (status == false) {
             board.drawBoardCanvas();
@@ -266,7 +269,9 @@ function step() {
             board.drawBoardCanvas();
             clearInterval(interval);
             alert('You won');
-            reset();
+            startPlaying = false;
+            id++;
+            start(id);
         }
         board.drawBoardCanvas();
     }, 200);
