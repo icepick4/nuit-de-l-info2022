@@ -240,6 +240,7 @@ function update() {
         ) {
             if (pacman.isPoweredUp()) {
                 //eat ghost
+                console.log("ghosts in pacman")
                 board.removeGhost(ghosts[i]);
                 score += 100;
             } else {
