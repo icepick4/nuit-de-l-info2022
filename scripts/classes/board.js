@@ -241,6 +241,7 @@ export class Board {
     }
 
     removeGhost(pacman) {
+        console.log('remove ghost');
         for (let i = 0; i < this.ghosts.length; i++) {
             let currentGhost = this.ghosts[i];
             if (

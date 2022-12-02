@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,42 +8,60 @@
 	<script src="scripts/info.js" type="module" defer></script>
 	<script src="scripts/captchat.js" type="module" defer></script>
 
-    <link rel="stylesheet" href="styles/info.css" />
-    <link rel="stylesheet" href="styles/captchat.css" />
+	<link rel="stylesheet" href="styles/info.css" />
+	<link rel="stylesheet" href="styles/captchat.css" />
 </head>
+
 <body>
+	<div id="background"></div>
+	<div id="modal" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Modal Header</h2>
+				<span class="close" id="close">&times;</span>
+			</div>
+			<div class="modal-body">
+				<p>Some text in the Modal Body</p>
+			</div>
+		</div>
+	</div>
 	<h1>Nuit de l'info 2022</h1>
 	<div class="nav">
-	<div class="captchat" tabindex="1">
-		<p>Captchat</p>
-		 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><rect width="16" height="16" x="4" y="4" stroke="#0A0A30" stroke-width="1.5" rx="2.075"/>
-    <path id="check_capt" stroke="#265BFF" stroke-linecap="round" stroke-width="1.5" d="M9.215 12.052l1.822 1.805 3.748-3.714" style="" stroke-dashoffset="100" stroke-dasharray="100"/></svg>    	
-    </div>
-	<button id="back"></button>
+		<div class="captchat" tabindex="1">
+			<p>Captchat</p>
+			<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+				<rect width="16" height="16" x="4" y="4" stroke="#0A0A30" stroke-width="1.5" rx="2.075" />
+				<path id="check_capt" stroke="#265BFF" stroke-linecap="round" stroke-width="1.5"
+					d="M9.215 12.052l1.822 1.805 3.748-3.714" stroke-dashoffset="100" stroke-dasharray="100" />
+			</svg>
+		</div>
+		<button id="back"></button>
 	</div>
-    <div class="content">
+	<div class="content">
 
-    	<div class="main">
-    		<p id="loading">Loading</p>
-    	<template id="info_t">
-    		<article>
-    		<h2 id="name"></h3>
-    			<h3>description</h3>
-    				<p id="description"></p>
-    			<h3>transmissions</h3>
-    				<p id="transmissions"></p>
-    			<h3>symptoms</h3>
-    				<p id="symptoms"></p>
-    			<h3>detection</h3>
-    				<p id="detection"></p>
-    			<h3>treatment</h3>
-    				<p id="treatment"></p>
-    		</article>
+		<div class="main">
+			<p id="loading">Loading</p>
+			<template id="info_t">
+				<article>
+					<h2 id="name">
+						</h3>
+						<h3>description</h3>
+						<p id="description"></p>
+						<h3>transmissions</h3>
+						<p id="transmissions"></p>
+						<h3>symptoms</h3>
+						<p id="symptoms"></p>
+						<h3>detection</h3>
+						<p id="detection"></p>
+						<h3>treatment</h3>
+						<p id="treatment"></p>
+				</article>
 
-    	</template>
+			</template>
 
-    </div>
+		</div>
 
 
 </body>
+
 </html>

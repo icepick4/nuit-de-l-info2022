@@ -43,10 +43,7 @@ button:hover {
 }
 
 body {
-    /* background-image: url("../assets/back.svg");
-    background-size: cover; */
-    backdrop-filter: blur(15px);
-    background-color: rgba(182, 182, 182, 0.2);
+    margin: 0;
 }
 
 .buttons {
@@ -196,5 +193,64 @@ button {
     top: 0;
     left: 0;
     width: 100px;
+    z-index: -2;
+}
+
+#fond {
+    backdrop-filter: blur(3px);
+    background-color: rgba(182, 182, 182, 0.2);
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
     z-index: -1;
+}
+
+#img1 {
+    top: 50px;
+    left: 100px;
+    animation-delay: 500ms;
+}
+
+#img2 {
+    top: 300px;
+    left: 50px;
+}
+
+#img3 {
+    top: 250px;
+    left: 600px;
+    animation-delay: 100ms;
+}
+
+#img4 {
+    top: 400px;
+    left: 220px;
+    animation-delay: 200ms;
+}
+
+.imgBack {
+    animation: moove 22s linear infinite;
+    transform-origin: 50% 50%
+}
+
+@keyframes moove {
+    0% {
+        transform: translateX(-50px)
+    }
+
+    25% {
+        transform: translateY(100px)
+    }
+
+    50% {
+        transform: translateX(100px)
+    }
+
+    75% {
+        transform: translateY(-100px)
+    }
+
+    100% {
+        transform: translateX(-50px)
+    }
 }

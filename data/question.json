@@ -49,11 +49,35 @@
             },
 
             {
-                "question" : "Quel est le nombre de personne vivant avec le VIH en 2021 ?",
+                "question" : "Quel est le nombre total de personnes vivant avec le VIH en 2021 ?",
 
                 "responses" : ["41,9 millions","20,1 millions","38,4 millions"],
                 "idResponse" : 2,
                 "url" : "https://www.unaids.org/fr/resources/fact-sheet"
+            },
+
+            {
+                "question" : "Quel est le nombre total de personnes nouvellement infectées par le VIH en 2021 ?",
+
+                "responses" : ["3,4 millions","1,5 millions","2,7 millions"],
+                "idResponse" : 1,
+                "url" : "https://www.unaids.org/fr/resources/fact-sheet"
+            },
+
+            {
+                "question" : "Quel est le nombre total de personnes décédées de maladies liées au SIDA en 2021 ?",
+
+                "responses" : ["650 000","1 million","651 000"],
+                "idResponse" : 0,
+                "url" : "https://www.unaids.org/fr/resources/fact-sheet"
+            },
+
+            {
+                "question" : "Quel est le pays le plus touché  par le SIDA au monde ?",
+
+                "responses" : ["Canada","Etats-Unis","Afrique du Sud"],
+                "idResponse" : 2,
+                "url" : "https://fr.wikipedia.org/wiki/Liste_des_pays_par_taux_de_pr%C3%A9valence_du_VIH/SIDA_adulte"
             }
 
             

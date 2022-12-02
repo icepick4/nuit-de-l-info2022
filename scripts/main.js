@@ -22,7 +22,7 @@ startButton.addEventListener('click', () => {
     infosButton.style.display = 'none';
     settingsButton.style.display = 'none';
     gameName.style.display = 'none';
-    start();
+    start(1);
 });
 
 settingsButton.addEventListener('click', () => {
@@ -30,11 +30,9 @@ settingsButton.addEventListener('click', () => {
     openModal();
 });
 
-
-infosButton.addEventListener("click", () => {
-  console.log("infos");
-  document.location.href="/information.html"
-
+infosButton.addEventListener('click', () => {
+    console.log('infos');
+    document.location.href = '/information.html';
 });
 
 background.addEventListener('click', () => {
@@ -96,6 +94,7 @@ let startPlaying = false;
 let lastDirection = null;
 let score;
 let interval;
+let id = 1;
 
 async function loadLevel(id) {
     try {
@@ -149,8 +148,8 @@ function updateKeyDown(e) {
 }
 document.body.addEventListener('keydown', updateKeyDown);
 
-function start() {
-    loadLevel(1).then(() => {
+function start(id) {
+    loadLevel(id).then(() => {
         pacman = new Pacman(pacmanPosition[0], pacmanPosition[1], pacmanSpeed);
         board = new Board(walls, emptyCase, pacman);
         board.initLevel();
@@ -266,9 +265,11 @@ function step() {
             board.drawBoardCanvas();
             clearInterval(interval);
             alert('You won');
-            reset();
+
+            startPlaying = false;
+            id++;
+            start(id);
         }
-        board.drawBoardCanvas();
     }, 200);
 }
 
