@@ -230,6 +230,38 @@ button {
     animation-delay: 1000ms;
 }
 
+#img5 {
+    top: 800px;
+    left: 1020px;
+    animation-delay: 1000ms;
+}
+
+#img6 {
+    top: 500px;
+    left: 1220px;
+    animation-delay: 1000ms;
+}
+
+#img7 {
+    top: 700px;
+    left: 520px;
+    animation-delay: 1000ms;
+}
+
+#img8 {
+    top: 200px;
+    left: 1420px;
+    animation-delay: 1000ms;
+}
+
+#img9 {
+    top: 100px;
+    left: 1020px;
+    animation-delay: 1000ms;
+}
+
+
+
 .imgBack {
     animation: moove 22s linear infinite;
     transform-origin: 50% 50%
