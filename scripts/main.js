@@ -27,7 +27,7 @@ startButton.addEventListener('click', () => {
 
 settingsButton.addEventListener('click', () => {
     console.log('settings');
-    openModal();
+    document.location.href="/credits.html"
 });
 
 
