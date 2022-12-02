@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Main font";
+  src: url("../assets/fonts/Inter-VariableFont_slnt,wght.ttf")
+    format("truetype");
+}
+
+* {
+  font-family: "Main font";
+}
+
 :focus{
   border-color: red;
 }
@@ -11,11 +21,12 @@
   padding: 5px;
   gap: 5px;
   cursor: default;
+  margin: auto;
 
 }
 
 .captchat p{
-  margin: 0px;
+  margin: auto;
 }
 
 .check_valide{

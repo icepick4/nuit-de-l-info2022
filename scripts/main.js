@@ -30,8 +30,11 @@ settingsButton.addEventListener('click', () => {
     openModal();
 });
 
-infosButton.addEventListener('click', () => {
-    console.log('infos');
+
+infosButton.addEventListener("click", () => {
+  console.log("infos");
+  document.location.href="/information.html"
+
 });
 
 background.addEventListener('click', () => {
