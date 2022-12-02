@@ -126,6 +126,7 @@ function updateKeyUp(e) {
     ) {
         if (!startPlaying) {
             startPlaying = true;
+            console.log('start');
             step();
         }
         lastDirection = e.keyCode;
@@ -135,6 +136,7 @@ function updateKeyUp(e) {
 document.body.addEventListener('keyup', updateKeyUp);
 
 function updateKeyDown(e) {
+    console.log(e.keyCode);
     if (
         (e.keyCode == UP) |
         (e.keyCode == LEFT) |
@@ -178,6 +180,7 @@ function update() {
     } else if (keys[DOWN] || lastDirection == DOWN) {
         pacman.moveDown();
     } else if (keys[RIGHT] || lastDirection == RIGHT) {
+        console.log('right');
         pacman.moveRight();
     }
     //check if pacman eat a pacgum
@@ -254,6 +257,7 @@ function update() {
 
 function step() {
     interval = setInterval(function () {
+        console.log('step');
         let status = update();
         if (status == false) {
             board.drawBoardCanvas();
@@ -265,11 +269,11 @@ function step() {
             board.drawBoardCanvas();
             clearInterval(interval);
             alert('You won');
-
             startPlaying = false;
             id++;
             start(id);
         }
+        board.drawBoardCanvas();
     }, 200);
 }
 
