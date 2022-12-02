@@ -1,4 +1,4 @@
-const path = '/data/mst.json';
+const path = 'data/mst.json';
 const template = document.querySelector('#info_t');
 const main = document.querySelector('.main');
 const btn_back = document.querySelector('#back');
