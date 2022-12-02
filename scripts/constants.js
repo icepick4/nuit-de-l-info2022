@@ -3,7 +3,7 @@ export const context = canvas.getContext('2d');
 
 export const startButton = document.getElementById('start');
 
-export const settingsButton = document.getElementById('settings');
+export const creditButton = document.getElementById('credit');
 
 export const infosButton = document.getElementById('infos');
 
@@ -33,3 +33,7 @@ export const UP = 38;
 export const LEFT = 37;
 export const DOWN = 40;
 export const RIGHT = 39;
+
+export const leftDoor = [0, 10];
+export const rightDoor = [30, 10];
+export const bottomDoor = [15, 20];

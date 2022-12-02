@@ -1,13 +1,14 @@
 import {
     capotes,
     close,
+    creditButton,
     DOWN,
     gameName,
     infosButton,
     LEFT,
+    leftDoor,
     modal,
     RIGHT,
-    settingsButton,
     startButton,
     UP
 } from './constants.js';
@@ -20,12 +21,12 @@ startButton.addEventListener('click', () => {
     canvas.style.display = 'block';
     startButton.style.display = 'none';
     infosButton.style.display = 'none';
-    settingsButton.style.display = 'none';
+    creditButton.style.display = 'none';
     gameName.style.display = 'none';
     start(1);
 });
 
-settingsButton.addEventListener('click', () => {
+creditButton.addEventListener('click', () => {
     console.log('settings');
     document.location.href = '/credits.html';
 });
@@ -44,6 +45,7 @@ close.addEventListener('click', () => {
 
 let title;
 let desc;
+let copyModale = modal.cloneNode(true);
 
 function toggleModal() {
     background.classList.toggle('show');
@@ -71,7 +73,7 @@ async function loadInfo(id) {
 
 function openModal(id) {
     loadInfo(id).then(() => {
-        modal.children[0].children[0].children[0].innerText =
+        modal.children[0].children[0].children[1].innerText =
             "Dis moi PacSida, qu'est ce que " + title;
         modal.children[0].children[1].children[0].innerHTML = desc;
         toggleModal();
@@ -93,7 +95,10 @@ let startPlaying = false;
 let lastDirection = null;
 let score;
 let interval;
+let inQuestion = false;
 let id = 1;
+let currentQuestion;
+let question;
 
 async function loadLevel(id) {
     try {
@@ -116,6 +121,21 @@ async function loadLevel(id) {
     }
 }
 
+async function loadQuestion() {
+    try {
+        let response = await fetch('../data/question.json');
+
+        if (response.ok) {
+            let data = await response.json();
+            question = data.questions[Math.floor(Math.random() * 10)];
+        } else {
+            throw new Error('Response error.');
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 function updateKeyUp(e) {
     if (
         (e.keyCode == UP) |
@@ -129,6 +149,11 @@ function updateKeyUp(e) {
         }
         lastDirection = e.keyCode;
         keys[e.keyCode] = false;
+    }
+    if (e.keyCode == 13) {
+        if (background.classList.contains('show')) {
+            toggleModal();
+        }
     }
 }
 document.body.addEventListener('keyup', updateKeyUp);
@@ -259,22 +284,61 @@ function update() {
     return 'continue';
 }
 
+function updateQuestion() {
+    //detect pacman is in leftdoor or rightdoor or bottomdoor
+    if (pacman.pos_x == leftDoor[0] && pacman.pos_y == leftDoor[1]) {
+        if (question.idResponse == 1) {
+            score += 100;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    if (pacman.pos_x == rightDoor[0] && pacman.pos_y == rightDoor[1]) {
+        if (question.idResponse == 2) {
+            score += 100;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    if (pacman.pos_x == bottomDoor[0] && pacman.pos_y == bottomDoor[1]) {
+        if (question.idResponse == 3) {
+            score += 100;
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 function step() {
     interval = setInterval(function () {
-        let status = update();
-        if (status == false) {
-            board.drawBoardCanvas();
-            clearInterval(interval);
-            openModal(board.getGhost(pacman));
-            alert('Game Over');
-            reset();
-        } else if (status == true) {
-            board.drawBoardCanvas();
-            clearInterval(interval);
-            alert('You won');
-            startPlaying = false;
-            id++;
-            start(id);
+        if (!inQuestion) {
+            let status = update();
+            if (status == false) {
+                board.drawBoardCanvas();
+                clearInterval(interval);
+                openModal(board.getGhost(pacman));
+                reset();
+            } else if (status == true) {
+                board.drawBoardCanvas();
+                clearInterval(interval);
+                startPlaying = false;
+                initQuestion();
+            }
+        } else {
+            let status = updateQuestion();
+            if (status == false) {
+                board.drawBoardCanvas();
+                clearInterval(interval);
+                openModal(board.getGhost(pacman));
+                reset();
+            } else {
+                board.drawBoardCanvas();
+                inQuestion = false;
+                start(id++);
+            }
         }
         board.drawBoardCanvas();
     }, 200);
@@ -284,7 +348,7 @@ function reset() {
     startPlaying = false;
     startButton.style.display = 'block';
     infosButton.style.display = 'block';
-    settingsButton.style.display = 'block';
+    creditButton.style.display = 'block';
     gameName.style.display = 'block';
     canvas.style.display = 'none';
     board = null;
@@ -293,4 +357,41 @@ function reset() {
     clearInterval(interval);
 }
 
-function initQuestion() {}
+function initQuestion() {
+    board.initQuestionBoard();
+    board.setCase(pacman);
+    loadQuestion().then(() => {
+        inQuestion = true;
+        let modal = copyModale.cloneNode(true);
+        modal.children[0].children[0].innerHTML = question.question;
+        modal.children[0].children[1].children[0].innerHTML =
+            question.responses[0];
+        modal.children[0].children[1].children[1].innerHTML =
+            question.responses[1];
+        modal.children[0].children[1].children[2].innerHTML =
+            question.responses[2];
+        toggleModal();
+    });
+}
+/*
+//clique droit
+document.onselectstart = new Function('return false');
+document.oncontextmenu = new Function('return false');
+
+//clique gauche
+document.body.style.pointerEvents = 'none';
+*/
+
+onkeyup = (e) => {
+    if (e.shiftKey && e.key === 'J') {
+        startButton.click();
+    }
+
+    if (e.shiftKey && e.key === 'C') {
+        creditButton.click();
+    }
+
+    if (e.shiftKey && e.key === 'I') {
+        infosButton.click();
+    }
+};

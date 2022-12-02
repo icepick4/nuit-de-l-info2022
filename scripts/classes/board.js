@@ -59,6 +59,20 @@ export class Board {
         }
     }
 
+    initQuestionBoard() {
+        //init the board with questions
+        for (let i = 0; i < this.board.length; i++) {
+            for (let j = 0; j < this.board[i].length; j++) {
+                if (i == 0 || i == 20 || j == 0 || j == 30) {
+                    this.board[i][j] = 'WALL';
+                } else {
+                    this.board[i][j] = 'EMPTY';
+                }
+            }
+        }
+        this.ghosts = [];
+    }
+
     initLevel() {
         //init the level with walls
         for (let i = 0; i < this.walls.length; i++) {
