@@ -27,12 +27,12 @@ startButton.addEventListener('click', () => {
 
 settingsButton.addEventListener('click', () => {
     console.log('settings');
-    openModal();
+    document.location.href="/credits.html"
 });
 
 infosButton.addEventListener('click', () => {
     console.log('infos');
-    document.location.href = '/information.html';
+    document.location.href = '/informations.html';
 });
 
 background.addEventListener('click', () => {
