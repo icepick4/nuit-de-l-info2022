@@ -2,14 +2,15 @@ import {
     canvas,
     caseWidth,
     context,
-    ghostImage,
+    ghostImages,
     pacGumImage,
+    pacmanCapoteImage,
     pacmanImage,
     wallImage
 } from '../constants.js';
 
 export class Board {
-    constructor(walls, emptyCase) {
+    constructor(walls, emptyCase, pacman) {
         this.walls = walls;
         this.emptyCase = emptyCase;
         this.board = new Array(21);
@@ -18,6 +19,7 @@ export class Board {
         }
         this.initBoard();
         this.ghosts = [];
+        this.pacman = pacman;
     }
 
     initBoard() {
@@ -88,13 +90,23 @@ export class Board {
                         caseWidth
                     );
                 } else if (this.board[i][j] == 'PACMAN') {
-                    context.drawImage(
-                        pacmanImage,
-                        j * caseWidth,
-                        i * caseWidth,
-                        caseWidth,
-                        caseWidth
-                    );
+                    if (this.pacman.isPoweredUp()) {
+                        context.drawImage(
+                            pacmanCapoteImage,
+                            j * caseWidth,
+                            i * caseWidth,
+                            caseWidth,
+                            caseWidth
+                        );
+                    } else {
+                        context.drawImage(
+                            pacmanImage,
+                            j * caseWidth,
+                            i * caseWidth,
+                            caseWidth,
+                            caseWidth
+                        );
+                    }
                 } else if (this.board[i][j] == 'PAC_GUM') {
                     context.drawImage(
                         pacGumImage,
@@ -119,8 +131,9 @@ export class Board {
         }
         for (let i = 0; i < this.ghosts.length; i++) {
             let currentGhost = this.ghosts[i];
+            console.log(currentGhost.pos_x, currentGhost.pos_y);
             context.drawImage(
-                ghostImage,
+                ghostImages[currentGhost.id],
                 currentGhost.pos_x * caseWidth,
                 currentGhost.pos_y * caseWidth,
                 caseWidth,
@@ -142,10 +155,14 @@ export class Board {
         } else if (entity.direction == 3) {
             pos_y += 1;
         }
-        if (this.board[pos_y][pos_x] == 'WALL') {
+        try {
+            if (this.board[pos_y][pos_x] == 'WALL') {
+                return false;
+            } else {
+                return true;
+            }
+        } catch {
             return false;
-        } else {
-            return true;
         }
     }
 
@@ -157,6 +174,38 @@ export class Board {
             return true;
         } else {
             return false;
+        }
+    }
+
+    isGhost(entity) {
+        //check if the entity is on a ghost
+        let pos_x = entity.pos_x;
+        let pos_y = entity.pos_y;
+        for (let i = 0; i < this.ghosts.length; i++) {
+            let currentGhost = this.ghosts[i];
+            if (
+                currentGhost.pos_x == pos_x &&
+                currentGhost.pos_y == pos_y &&
+                currentGhost.isAlive()
+            ) {
+                return true;
+            }
+        }
+    }
+
+    getGhost(entity) {
+        //get the ghost on the entity position
+        let pos_x = entity.pos_x;
+        let pos_y = entity.pos_y;
+        for (let i = 0; i < this.ghosts.length; i++) {
+            let currentGhost = this.ghosts[i];
+            if (
+                currentGhost.pos_x == pos_x &&
+                currentGhost.pos_y == pos_y &&
+                currentGhost.isAlive()
+            ) {
+                return currentGhost.id;
+            }
         }
     }
 
@@ -188,6 +237,19 @@ export class Board {
             return true;
         } else {
             return false;
+        }
+    }
+
+    removeGhost(pacman) {
+        console.log('remove ghost');
+        for (let i = 0; i < this.ghosts.length; i++) {
+            let currentGhost = this.ghosts[i];
+            if (
+                currentGhost.pos_x == pacman.pos_x &&
+                currentGhost.pos_y == pacman.pos_y
+            ) {
+                this.ghosts[i].die();
+            }
         }
     }
 }

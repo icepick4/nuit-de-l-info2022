@@ -21,11 +21,12 @@
   padding: 5px;
   gap: 5px;
   cursor: default;
+  margin: auto;
 
 }
 
 .captchat p{
-  margin: 0px;
+  margin: auto;
 }
 
 .check_valide{

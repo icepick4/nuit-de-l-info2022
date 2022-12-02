@@ -3,6 +3,13 @@
     src: url("../assets/fonts/Inter-VariableFont_slnt,wght.ttf") format("truetype");
 }
 
+body,
+html {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
 * {
     font-family: "Main font";
 }
@@ -36,8 +43,7 @@ button:hover {
 }
 
 body {
-    background-image: url("../assets/back.svg");
-    background-size: cover;
+    margin: 0;
 }
 
 .buttons {
@@ -96,18 +102,20 @@ button {
     opacity: 0;
     z-index: -1;
     position: absolute;
-    top: 50%;
+    top: -100px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
     border-radius: 15px;
     border: 2px solid #C5BF38;
+    background-color: white;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    transition: opacity 0.2s, z-index 0.2s;
+    width: 60vw;
+    transition: opacity 0.8s, z-index 0.2s, top 0.8s;
 }
 
 .modal-content {
@@ -140,15 +148,14 @@ button {
 
 .modal.show {
     opacity: 1;
-    z-index: 1;
+    z-index: 3;
+    top: 150px;
 }
 
 .capote {
     width: 50px;
-    background-color: #000000;
-    opacity: 0.5;
-    z-index: 1;
     position: relative;
+    transition: left 0.8s;
 }
 
 .capote:nth-child(1) {
@@ -175,4 +182,75 @@ button {
     top: 0;
     left: 30%;
     z-index: 2;
+}
+
+.capote-container.second {
+    left: 75%;
+}
+
+.imgBack {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    z-index: -2;
+}
+
+#fond {
+    backdrop-filter: blur(3px);
+    background-color: rgba(182, 182, 182, 0.2);
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+#img1 {
+    top: 50px;
+    left: 100px;
+    animation-delay: 500ms;
+}
+
+#img2 {
+    top: 300px;
+    left: 50px;
+}
+
+#img3 {
+    top: 250px;
+    left: 600px;
+    animation-delay: 100ms;
+}
+
+#img4 {
+    top: 400px;
+    left: 220px;
+    animation-delay: 200ms;
+}
+
+.imgBack {
+    animation: moove 22s linear infinite;
+    transform-origin: 50% 50%
+}
+
+@keyframes moove {
+    0% {
+        transform: translateX(-50px)
+    }
+
+    25% {
+        transform: translateY(100px)
+    }
+
+    50% {
+        transform: translateX(100px)
+    }
+
+    75% {
+        transform: translateY(-100px)
+    }
+
+    100% {
+        transform: translateX(-50px)
+    }
 }

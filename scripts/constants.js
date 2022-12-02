@@ -19,12 +19,15 @@ for (let i = 0; i < mobs.length; i++) {
 export const wallImage = document.getElementById('wall');
 export const emptyCaseImage = document.getElementById('emptyCase');
 export const pacmanImage = document.getElementById('pacman');
-export const ghostImage = document.getElementById('sida');
+export const pacmanCapoteImage = document.getElementById('pacmanCapote');
+export const ghostImages = document.getElementById('mobs').children;
+
 export const pacGumImage = document.getElementById('pacGum');
 export const gameName = document.getElementById('gameName');
 export const background = document.getElementById('background');
 export const modal = document.getElementById('modal');
 export const close = document.getElementById('close');
+export const capotes = document.getElementsByClassName('capote');
 
 export const UP = 38;
 export const LEFT = 37;
