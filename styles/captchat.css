@@ -48,8 +48,8 @@
 
 .captchat_select{
   position: absolute;
-  top: 20%;
-  left: 20%;
+  top: 25%;
+  left: 20px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border: 2px black solid;
