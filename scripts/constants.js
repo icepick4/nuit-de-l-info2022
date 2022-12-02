@@ -21,7 +21,10 @@ export const emptyCaseImage = document.getElementById('emptyCase');
 export const pacmanImage = document.getElementById('pacman');
 export const ghostImage = document.getElementById('sida');
 export const pacGumImage = document.getElementById('pacGum');
-export const pacPoint = document.getElementById('pacPoint');
+export const gameName = document.getElementById('gameName');
+export const background = document.getElementById('background');
+export const modal = document.getElementById('modal');
+export const close = document.getElementById('close');
 
 export const UP = 38;
 export const LEFT = 37;

@@ -5,21 +5,22 @@ export class Entity {
         this.speed = 1;
         //-1 for no move, 0 for left, 1 for right, 2 for up, 3 for down
         this.direction = -1;
+        this.type = 'EMPTY';
     }
 
-    move_right() {
+    moveRight() {
         this.pos_x += 1;
     }
 
-    move_left() {
+    moveLeft() {
         this.pos_x -= 1;
     }
 
-    move_up() {
+    moveUp() {
         this.pos_y -= 1;
     }
 
-    move_down() {
+    moveDown() {
         this.pos_y += 1;
     }
 }

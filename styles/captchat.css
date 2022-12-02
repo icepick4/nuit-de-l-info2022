@@ -1,4 +1,6 @@
-
+:focus{
+  border-color: red;
+}
 .captchat{
   font-family: sans-serif;
   text-transform: uppercase;
