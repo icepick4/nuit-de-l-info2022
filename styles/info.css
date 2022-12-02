@@ -127,3 +127,40 @@ button:hover {
   z-index: 3;
   top: 150px;
 }
+
+
+.capote {
+    width: 50px;
+    position: relative;
+    transition: left 0.8s;
+}
+
+.capote:nth-child(1) {
+    left: -50px;
+}
+
+.capote:nth-child(2) {
+    left: -100px;
+}
+
+.capote:nth-child(3) {
+    left: -150px;
+}
+
+.capote.active {
+    left: 0;
+}
+
+.capote-container {
+    transform: rotate(90deg);
+    transform-origin: top left;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 30%;
+    z-index: 2;
+}
+
+.capote-container.second {
+    left: 75%;
+}
