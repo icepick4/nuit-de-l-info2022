@@ -1,4 +1,6 @@
-
+:focus{
+  border-color: red;
+}
 .captchat{
   font-family: sans-serif;
   text-transform: uppercase;
@@ -63,6 +65,13 @@
   border: none;
   background-color: blue;
   width: 3fr;
+  color: white;
+  border-radius: 15px;
+  font-size: 20px;
+}
+
+.captchat_select button.close{
+  background-color: red;
   color: white;
   border-radius: 15px;
   font-size: 20px;
