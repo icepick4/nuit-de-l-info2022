@@ -9,8 +9,9 @@
 }
 
 body {
-  background-image: url("../assets/back.svg");
-  background-size: cover;
+  background-image: url("../assets/back2.svg");
+  background-repeat: repeat;
+  /*background-size: cover;*/
   color: black;
 }
 
