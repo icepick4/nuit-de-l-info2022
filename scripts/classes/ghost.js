@@ -18,13 +18,11 @@ export class Ghost extends Entity {
         this.canMove = false;
         //die for 3 seconds
         setTimeout(() => {
-            console.log('rivie');
             this.revive();
-        }, 3000);
+        }, 4000);
     }
 
     revive() {
-        console.log('revive');
         this.canMove = true;
     }
 

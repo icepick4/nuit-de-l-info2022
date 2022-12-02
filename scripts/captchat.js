@@ -67,11 +67,13 @@ function captchat(argument) {
         }
     }
     let btn = document.createElement('button');
+    btn.setAttribute('id', 'btnValider');
     btn.innerHTML = 'Valider';
     btn.addEventListener('click', validate);
     capt.appendChild(btn);
 
     let btn_close = document.createElement('button');
+    btn_close.setAttribute('id', 'closeModal');
     btn_close.classList.add('close');
     btn_close.innerHTML = 'X';
     btn_close.addEventListener('click', close_cap);
@@ -79,6 +81,20 @@ function captchat(argument) {
     capt.appendChild(btn_close);
     document.body.appendChild(capt);
     toggleModal();
+
+    onkeyup = (e) => {
+        if (e.shiftKey && e.key === 'C') {
+            captchat();
+        }
+
+        if (e.shiftKey && e.key === 'V') {
+            btn.click();
+        }
+
+        if (e.shiftKey && e.key === 'X') {
+            btn_close.click();
+        }
+    };
 }
 
 // select/ deselect img
@@ -135,6 +151,7 @@ function toggleModal() {
         const element = capotes[index];
         element.classList.toggle('active');
     }
+    document.querySelector('.close').focus();
 }
 
 background.addEventListener('click', () => {

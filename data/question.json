@@ -5,7 +5,8 @@
 
                 "responses" : ["Virus International Humanitaire","Virus Immunodeficience Humaine","Virus Intramoleculaire Humaine"],
                 "idResponse" : 1,
-                "url" : "https://www.canada.ca/fr/sante-publique/services/maladies/vih-et-sida.html"
+                "url" : "https://www.canada.ca/fr/sante-publique/services/maladies/vih-et-sida.html",
+                "response":"Le virus de l'immunodéficience humaine (VIH) est un type de virus qui attaque le système immunitaire du corps. Bien que l'infection par le VIH soit une affection chronique maîtrisable, si elle n'est pas traitée, elle peut affaiblir le système immunitaire ou évoluer vers le syndrome d'immunodéficience acquise (sida)."
             },
         
             {
@@ -13,7 +14,8 @@
 
                 "responses" : ["Syndrome Immuno Déficience Acquise","Syndrome International D'Asie","Syndrome Immuno Deficience Attrapée"],
                 "idResponse" : 0,
-                "url" : "https://www.sida-info-service.org/que-signifie-vih-sida/"
+                "url" : "https://www.sida-info-service.org/que-signifie-vih-sida/",
+                "response":"Sida signifie syndrome d'Immuno d'Eficience Acquise, au fil du temps et en l'absence de traitement efficace, les cellules coordonnant l'immunité peuvent devenir de moins en moins nombreuses et l'immunité risque d'être moins efficace. Des maladies de plus en plus graves risquent alors se développer. Certaines maladies sont appelées 'maladies opportunistes' parce qu'elles profitent de la diminution de l'immunité pour se développer. Lorsqu'une personne a une ou plusieurs maladies de ce type, on dit qu'elle a le SIDA."
             },
 
             {
@@ -21,7 +23,8 @@
 
                 "responses" : ["Pour donner plus de plaisir","Pour être mieux à l'aise","Pour en chasser l'air"],
                 "idResponse" : 2,
-                "url" : "https://preventionsida.org/fr/quizz/quiz-se-proteger-du-vih-et-des-ist/"
+                "url" : "https://preventionsida.org/fr/quizz/quiz-se-proteger-du-vih-et-des-ist/",
+                "response":"Pour en chasser l’air afin d’éviter que le préservatif ne se déchire sous la pression lors de l’éjaculation."
             },
 
             {
@@ -29,7 +32,8 @@
 
                 "responses" : ["Oui s'il n'y a pas d'éjaculation","Non, un préservatif pour un rapport sexuel","Oui s'il n'est pas déchiré"],
                 "idResponse" : 1,
-                "url" : "https://preventionsida.org/fr/quizz/quiz-se-proteger-du-vih-et-des-ist/"
+                "url" : "https://preventionsida.org/fr/quizz/quiz-se-proteger-du-vih-et-des-ist/",
+                "response":"Non, un préservatif pour un rapport sexuel"
             },
 
             {
@@ -37,7 +41,8 @@
 
                 "responses" : ["Dans un centre de planning","En pharmacie","A l'hôpital"],
                 "idResponse" : 0,
-                "url" : "https://preventionsida.org/fr/quizz/quiz-se-proteger-du-vih-et-des-ist/"
+                "url" : "https://preventionsida.org/fr/quizz/quiz-se-proteger-du-vih-et-des-ist/",
+                "response":"Dans un centre de planning familial"
             },
 
             {
@@ -45,7 +50,8 @@
 
                 "responses" : ["Faux","Vrai","Faux, uniquement à l'hôpital"],
                 "idResponse" : 1,
-                "url" : "https://preventionsida.org/fr/quizz/mon-premier-quizz/"
+                "url" : "https://preventionsida.org/fr/quizz/mon-premier-quizz/",
+                "response":"Faux, les autotests de dépistage du VIH sont uniquement disponible à l'hôpital"
             },
 
             {
@@ -53,7 +59,8 @@
 
                 "responses" : ["41,9 millions","20,1 millions","38,4 millions"],
                 "idResponse" : 2,
-                "url" : "https://www.unaids.org/fr/resources/fact-sheet"
+                "url" : "https://www.unaids.org/fr/resources/fact-sheet",
+                "response":"En 2021, 38,4 millions [33,9 millions–43,8 millions] de personnes vivaient avec le VIH"
             },
 
             {
@@ -61,7 +68,8 @@
 
                 "responses" : ["3,4 millions","1,5 millions","2,7 millions"],
                 "idResponse" : 1,
-                "url" : "https://www.unaids.org/fr/resources/fact-sheet"
+                "url" : "https://www.unaids.org/fr/resources/fact-sheet",
+                "response":"En 2021, 5 million [1,1 million–2 millions] de personnes sont devenues nouvellement infectées par le VIH"
             },
 
             {
@@ -69,7 +77,8 @@
 
                 "responses" : ["650 000","1 million","651 000"],
                 "idResponse" : 0,
-                "url" : "https://www.unaids.org/fr/resources/fact-sheet"
+                "url" : "https://www.unaids.org/fr/resources/fact-sheet",
+                "response":"En 2021, 650 000 [510 000–860 000] de personnes sont décédées de maladies liées au sida"
             },
 
             {
@@ -77,7 +86,8 @@
 
                 "responses" : ["Canada","Etats-Unis","Afrique du Sud"],
                 "idResponse" : 2,
-                "url" : "https://fr.wikipedia.org/wiki/Liste_des_pays_par_taux_de_pr%C3%A9valence_du_VIH/SIDA_adulte"
+                "url" : "https://fr.wikipedia.org/wiki/Liste_des_pays_par_taux_de_pr%C3%A9valence_du_VIH/SIDA_adulte",
+                "response":"La pandémie de VIH est la plus grave en Afrique australe. Plus de 10% de toutes les personnes vivant avec le VIH / sida résident dans la région. La prévalence du VIH chez l'adulte dépasse 20% à Eswatini (Swaziland) , au Botswana et au Lesotho , tandis que six autres pays signalent une prévalence du VIH chez l'adulte d'au moins 10%. En dehors de l'Afrique, le taux de prévalence le plus élevé est observé aux Bahamas (3,3%)"
             }
 
             

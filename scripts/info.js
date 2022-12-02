@@ -4,7 +4,7 @@ const main = document.querySelector('.main');
 const btn_back = document.querySelector('#back');
 const loading = document.querySelector('#loading');
 let checkBox = document.querySelector('#check_capt');
-
+const btnClose = document.getElementById('close');
 
 btn_back.addEventListener('click', function () {
     console.log(checkBox.classList);
@@ -48,3 +48,13 @@ function show(data) {
 }
 
 load();
+
+onkeyup = (e) => {
+    if (e.shiftKey && e.key === 'R') {
+        btn_back.click();
+    }
+
+    if (e.shiftKey && e.key === 'X') {
+        btnClose.click();
+    }
+};

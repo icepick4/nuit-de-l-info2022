@@ -1,11 +1,14 @@
 import {
+    bottomDoor,
     canvas,
     caseWidth,
     context,
     ghostImages,
+    leftDoor,
     pacGumImage,
     pacmanCapoteImage,
     pacmanImage,
+    rightDoor,
     wallImage
 } from '../constants.js';
 
@@ -40,7 +43,7 @@ export class Board {
                     this.board[i][j] = 'WALL';
                 } else {
                     //point for pacman
-                    this.board[i][j] = 'EMPTY';
+                    this.board[i][j] = 'POINT';
                 }
                 if (i == 8 && j == 15) {
                     this.board[i][j] = 'EMPTY';
@@ -68,6 +71,15 @@ export class Board {
                 } else {
                     this.board[i][j] = 'EMPTY';
                 }
+                if (i == leftDoor[1] && j == leftDoor[0]) {
+                    this.board[i][j] = 'EMPTY';
+                }
+                if (i == rightDoor[1] && j == rightDoor[0]) {
+                    this.board[i][j] = 'EMPTY';
+                }
+                if (bottomDoor[1] == i && bottomDoor[0] == j) {
+                    this.board[i][j] = 'EMPTY';
+                }
             }
         }
         this.ghosts = [];
@@ -77,7 +89,6 @@ export class Board {
         //init the level with walls
         for (let i = 0; i < this.walls.length; i++) {
             let currentWall = this.walls[i];
-            console.log(currentWall);
             this.board[currentWall[1]][currentWall[0]] = 'WALL';
         }
         for (let i = 0; i < this.emptyCase.length; i++) {
