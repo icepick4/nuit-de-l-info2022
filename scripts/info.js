@@ -4,6 +4,8 @@ const main = document.querySelector('.main');
 const btn_back = document.querySelector('#back');
 const loading = document.querySelector('#loading');
 let checkBox = document.querySelector('#check_capt');
+
+
 btn_back.addEventListener('click', function () {
     console.log(checkBox.classList);
     if (checkBox.classList.contains('check_valide')) {
