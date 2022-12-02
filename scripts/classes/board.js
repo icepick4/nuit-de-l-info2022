@@ -77,6 +77,7 @@ export class Board {
         //init the level with walls
         for (let i = 0; i < this.walls.length; i++) {
             let currentWall = this.walls[i];
+            console.log(currentWall);
             this.board[currentWall[1]][currentWall[0]] = 'WALL';
         }
         for (let i = 0; i < this.emptyCase.length; i++) {

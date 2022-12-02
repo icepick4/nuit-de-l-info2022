@@ -18,7 +18,7 @@ export class Ghost extends Entity {
         this.canMove = false;
         //die for 3 seconds
         setTimeout(() => {
-            console.log("rivie");
+            console.log('rivie');
             this.revive();
         }, 3000);
     }
@@ -34,5 +34,17 @@ export class Ghost extends Entity {
 
     setGhostSpeed(speed) {
         this.speed = speed;
+    }
+
+    followPacman(pacman) {
+        if (this.pos_x < pacman.pos_x) {
+            this.direction = 1;
+        } else if (this.pos_x > pacman.pos_x) {
+            this.direction = 0;
+        } else if (this.pos_y < pacman.pos_y) {
+            this.direction = 3;
+        } else if (this.pos_y > pacman.pos_y) {
+            this.direction = 2;
+        }
     }
 }

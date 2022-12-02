@@ -25,7 +25,7 @@ export const ghostImages = document.getElementById('mobs').children;
 export const pacGumImage = document.getElementById('pacGum');
 export const gameName = document.getElementById('gameName');
 export const background = document.getElementById('background');
-export const modal = document.getElementById('modal');
+export var modal = document.getElementById('modal');
 export const close = document.getElementById('close');
 export const capotes = document.getElementsByClassName('capote');
 

@@ -1,4 +1,5 @@
 import {
+    bottomDoor,
     capotes,
     close,
     creditButton,
@@ -9,6 +10,7 @@ import {
     leftDoor,
     modal,
     RIGHT,
+    rightDoor,
     startButton,
     UP
 } from './constants.js';
@@ -27,12 +29,10 @@ startButton.addEventListener('click', () => {
 });
 
 creditButton.addEventListener('click', () => {
-    console.log('settings');
     document.location.href = '/credits.html';
 });
 
 infosButton.addEventListener('click', () => {
-    console.log('infos');
     document.location.href = '/informations.html';
 });
 
@@ -72,8 +72,9 @@ async function loadInfo(id) {
 }
 
 function openModal(id) {
+    console.log(modal.children[0]);
     loadInfo(id).then(() => {
-        modal.children[0].children[0].children[1].innerText =
+        modal.children[0].children[0].children[0].innerText =
             "Dis moi PacSida, qu'est ce que " + title;
         modal.children[0].children[1].children[0].innerHTML = desc;
         toggleModal();
@@ -248,14 +249,14 @@ function update() {
     for (let i = 0; i < ghosts.length; i++) {
         last_x = ghosts[i].pos_x;
         last_y = ghosts[i].pos_y;
-        let random = Math.floor(Math.random() * 4);
-        if (random == 0) {
+        ghosts[i].followPacman(pacman);
+        if (ghosts[i].direction == 2) {
             ghosts[i].moveUp();
-        } else if (random == 1) {
+        } else if (ghosts[i].direction == 0) {
             ghosts[i].moveLeft();
-        } else if (random == 2) {
+        } else if (ghosts[i].direction == 3) {
             ghosts[i].moveDown();
-        } else if (random == 3) {
+        } else if (ghosts[i].direction == 1) {
             ghosts[i].moveRight();
         }
         //if ghost move into pacman
@@ -285,6 +286,15 @@ function update() {
 }
 
 function updateQuestion() {
+    if (keys[UP] || lastDirection == UP) {
+        pacman.moveUp();
+    } else if (keys[LEFT] || lastDirection == LEFT) {
+        pacman.moveLeft();
+    } else if (keys[DOWN] || lastDirection == DOWN) {
+        pacman.moveDown();
+    } else if (keys[RIGHT] || lastDirection == RIGHT) {
+        pacman.moveRight();
+    }
     //detect pacman is in leftdoor or rightdoor or bottomdoor
     if (pacman.pos_x == leftDoor[0] && pacman.pos_y == leftDoor[1]) {
         if (question.idResponse == 1) {
@@ -310,6 +320,7 @@ function updateQuestion() {
             return false;
         }
     }
+    return 'continue';
 }
 
 function step() {
@@ -334,7 +345,7 @@ function step() {
                 clearInterval(interval);
                 openModal(board.getGhost(pacman));
                 reset();
-            } else {
+            } else if (status == true) {
                 board.drawBoardCanvas();
                 inQuestion = false;
                 start(id++);
@@ -362,36 +373,15 @@ function initQuestion() {
     board.setCase(pacman);
     loadQuestion().then(() => {
         inQuestion = true;
-        let modal = copyModale.cloneNode(true);
-        modal.children[0].children[0].innerHTML = question.question;
+        // modal = copyModale.cloneNode(true);
+        console.log(modal.children[0].children[0].children[0]);
+        modal.children[0].children[0].children[0].innerText =
+            question.responses[0];
         modal.children[0].children[1].children[0].innerHTML =
             question.responses[0];
-        modal.children[0].children[1].children[1].innerHTML =
-            question.responses[1];
-        modal.children[0].children[1].children[2].innerHTML =
-            question.responses[2];
+        let p = document.createElement('p');
+        p.innerHTML = question.responses[1];
+        modal.children[0].children[1].appendChild(p);
         toggleModal();
     });
 }
-/*
-//clique droit
-document.onselectstart = new Function('return false');
-document.oncontextmenu = new Function('return false');
-
-//clique gauche
-document.body.style.pointerEvents = 'none';
-*/
-
-onkeyup = (e) => {
-    if (e.shiftKey && e.key === 'J') {
-        startButton.click();
-    }
-
-    if (e.shiftKey && e.key === 'C') {
-        creditButton.click();
-    }
-
-    if (e.shiftKey && e.key === 'I') {
-        infosButton.click();
-    }
-};
