@@ -11,6 +11,7 @@
 body {
   background-image: url("../assets/back.svg");
   background-size: cover;
+  color: black;
 }
 
 .main{
