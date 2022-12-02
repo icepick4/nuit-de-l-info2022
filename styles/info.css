@@ -31,8 +31,16 @@ h3{
   text-transform: capitalize;
 }
 
-button {
-    position: fixed;
+
+.nav{
+  position: fixed;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+button#back {
+    
     background-size: cover;
     border: none;
     background-repeat: no-repeat;

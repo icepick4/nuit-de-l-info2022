@@ -1,4 +1,4 @@
-checkBox = document.querySelector(".captchat");
+let checkBox = document.querySelector(".captchat");
 checkBox.addEventListener("click", function (e) {
   captchat();
 });
