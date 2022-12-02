@@ -1,6 +1,7 @@
 {
   "data": [
     {
+      "id": 1,
       "name": "Gonococcie",
       "description": "La gonococcie (également appelée blennorragie, gonorrhée ou encore « chaude pisse ») est une infection d’origine bactérienne. Elle provoque des brûlures et/ou un écoulement jaune par la verge, le vagin ou l'anus. Cette infection se transmet lors de rapports sexuels, bucco-génitaux, vaginaux ou anaux. Le traitement se fait par prise d'antibiotiques adaptés.",
       "transmissions": "La transmission de la gonococcie est très facile et peut se faire au cours de pénétrations vaginales, anales ou buccales. Un contact sexuel sans pénétration peut suffire à une contamination. Le nombre de diagnostics d’infection à gonocoque rapportés a augmenté de 53% entre 2016 et 2018. Cette augmentation s’observe chez les HSH (hommes ayant des relations sexuelles avec des hommes) (+58%) et chez les hétérosexuels (+29%). Les personnes diagnostiquées pour une gonococcie sont majoritairement des HSH (71%).",
@@ -9,6 +10,7 @@
       "treatment": "Aujourd’hui, le traitement de la gonococcie repose principalement sur une injection d'antibiotique Ceftriaxone (Rocéphine®), Gentamicine ou Ciprofloxacine selon les cas.La personne est considérée comme guérie (et donc non contaminante) une semaine après l’injection.<br><u>Recommandations :</u><ul><li>contrôle clinique au bout d'une semaine, mais il se fait rarement s'il n'y a plus de symptômes</li><li>contrôle biologique au bout de 5 semaines.</li></ul>Le traitement systématique des partenaires permet d’interrompre la chaîne de transmission.Le traitement permet la guérison complète mais ne protège pas d’une nouvelle infection.Un traitement actif sur Chlamydiae doit être systématiquement associé au traitement de la gonococcie. Lorsqu'une personne présente un écoulement urétral après un rapport sexuel non protégé (généralement de 2 à 7 jours après), et sans attendre les résultats d’analyses, il est recommandé de prescrire un traitement efficace sur chlamydiae et gonocoque (doxycycline 100 mg x 2 pendant 7 jours et Rocéphine® 500 mg dose unique) et de réaliser un dépistage de toutes les IST, dont chlamydiae et gonocoque."
     },
     {
+      "id": 2,
       "name": "Chlamydiae",
       "description": "L’infection à Chlamydia Trachomatis, due à une bactérie, est extrêmement répandue, en particulier chez les moins de 25 ans.Elle peut se développer en l’absence de tout symptôme. Elle touche les hommes comme les femmes et peut entraîner de graves complications.C’est l’une des premières causes de stérilité en France. Son diagnostic est souvent tardif et survient parfois au-delà du délai d’incubation.",
       "transmissions": "Les chlamydiae se transmettent :<ul><li>par pénétration vaginale ou anale, fellation et plus rarement par le cunnilingus</li><li>par transmission mère-enfant lors de l’accouchement (occasionnant des conjonctivites et des pneumopathies tardives)</li></ul>Cette infection est extrêmement répandue. En 2018, 133 000 infections à chlamydia ont été diagnostiquées en France. Le taux national de diagnostics est de 202 pour 100 000 habitants de 15 ans et plus (285 pour 100 000 chez les femmes et 112 pour 100 000 chez les hommes). Pour les infections dépistées en CeGIDD, la Guadeloupe a le taux de positivité le plus élevé de l’Outre-mer (13,8 %) et la région Nouvelle-Aquitaine le taux de positivité le plus élevé de métropole (8,5 %).",
@@ -17,6 +19,7 @@
       "treatment": "Les chlamydiae sont traitées par des antibiotiques : Doxycycline voie orale ou Azithromycine voie orale.La personne n’est plus contaminante une semaine après la fin du traitement.Le traitement systématique des partenaires des deux derniers mois est fortement recommandé."
     },
     {
+      "id": 3,
       "name": "Mycoplasmes",
       "description": "Les mycoplasmes sont des bactéries. Si de nombreuses espèces de mycoplasmes sont pathogènes pour les animaux, seulement 4 peuvent l’être pour l’homme.<br><u>Ces mycoplasmes sont responsables :</u><ul><li>d’infections pulmonaires : Mycoplasma pneumonia</li><li>d’infections génitales : Mycoplasma genitallium (Mg), Mycoplasma hominis (Mh), Ureaplasma urealitycum (Uu)</li></ul>Les infections à mycoplasme sont prises en compte de façon relativement récente. Décrites pour la 1ère fois en 1980, leur réelle place dans les IST n’est pas encore clairement définie :<ul><li>Mycoplasma hominis et Ureaplasma urealitycum : leur pathogénie est débattue</li><li>Mycoplasma genitalium : c’est le seul qui est clairement pathogène</li></ul>",
       "transmissions": "<u>Transmission sexuelle :</u>Seul Mycoplasma genitalium est considéré comme responsable d’IST. Ce n’est pas le cas pour Mycoplasma hominis et Ureaplasma urealyticum qui se trouvent habituellement dans les voies génitales.<u>Transmission mère-enfant :</u> pendant la grossesse ou infection lors de l’accouchement.",
@@ -25,6 +28,16 @@
       "treatment": "<u>Mycoplasma genitalium<u><b>Seuls les patients symptomatiques sont traités.<ul><li>1ère intention : Azithromycine (Zithromax® ou génériques)</li><li>2ème intention : Josamycine (Josacine® ou génériques)</li><li>En cas de résistance aux macrolides ou si l'infection persiste infection persistante : Moxifloxacine (Izilox® ou génériques)</li></ul><u>Mycoplasma hominis et Ureaplasma urealitycum</u><br>Doxycycline (200 mg pendant 7 jours) ou azithromycine (Zithromax® ou génériques)."
     },
     {
+      "id": 4,
+      "name": "Herpès génital",
+      "description": "Il existe deux Herpes Simplex Virus (HSV) :<ul><li>HSV1 se transmet principalement par contact des muqueuses buccales, responsable de l’herpès oro-facial/labial. Mais peut également être transmis dans la zone génitale lors des rapports oro-génitaux et provoquer un herpès génital</li><li>HSV2 se transmet presque exclusivement par voie sexuelle et provoque des infections génitales ou anales (herpès génital)</li></ul>’herpès génital (HG) est l’une des IST les plus répandues dans le monde et représente la première cause d’ulcère génital.Le retentissement de l’herpès génital récurrent sur la qualité de vie est important.Après la primo infection, le virus herpétique s’installe dans l’organisme et s’y « endort », puis se manifeste ensuite lors de poussées par de petites cloques évoluant en plaies, localisées sur les organes sexuels ou à proximité.Cette infection peut resurgir plusieurs fois chez la même personne au cours de sa vie.  Ces résurgences ou poussées se produisent à un rythme variable, parfois de façon asymptomatique.En France, la prévalence chez l’adulte dans la population générale est élevée et serait respectivement de 67% pour HSV1 et 17% pour HSV2.",
+      "transmissions": "",
+      "symptoms": "",
+      "detection": "",
+      "treatment": ""
+    },
+    {
+      "id": ,
       "name": "",
       "description": "",
       "transmissions": "",
