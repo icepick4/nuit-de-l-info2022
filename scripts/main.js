@@ -32,7 +32,7 @@ settingsButton.addEventListener('click', () => {
 
 infosButton.addEventListener('click', () => {
     console.log('infos');
-    document.location.href = '/information.html';
+    document.location.href = '/informations.html';
 });
 
 background.addEventListener('click', () => {
