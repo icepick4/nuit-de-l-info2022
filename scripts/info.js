@@ -1,4 +1,6 @@
 const path = "/data/mst.json"
+const template =  document.querySelector('#info_t');
+const main = document.querySelector('.main');
 
 function load() {
 	fetch(path)
@@ -10,16 +12,28 @@ function load() {
    })
    .then(json => {
 
-       show(json)
+       show(json['data'])
    })
-   .catch(function () {
+   /*.catch(function () {
        console.log("error");
-   })
+   })*/
 }
 
 
 function show(data) {
 	console.log(data);
+	data.forEach(el => {
+		let tmp = template.content.cloneNode(true);
+		tmp.querySelector("#name").innerHTML= el["name"]
+		tmp.querySelector("#description").innerHTML= el["description"]
+		tmp.querySelector("#transmissions").innerHTML= el["transmissions"]
+		tmp.querySelector("#symptoms").innerHTML= el["symptoms"]
+		tmp.querySelector("#detection").innerHTML= el["detection"]
+		tmp.querySelector("#treatment").innerHTML= el["treatment"]
+		main.appendChild(tmp)
+
+	});
+	
 }
 
 load()
