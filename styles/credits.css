@@ -5,9 +5,19 @@ h2 {
 }
 
 .margin_top {
-  margin-top: 100px;
+    margin: auto;
+    margin-top: 100px;
 }
 button {
   position: fixed;
   left: 20px;
+}
+
+.small{
+    width: 25%;
+
+}
+
+.small p{
+    text-align: center;
 }
