@@ -1,5 +1,4 @@
 import {
-    bottomDoor,
     capotes,
     close,
     creditButton,
@@ -10,7 +9,6 @@ import {
     leftDoor,
     modal,
     RIGHT,
-    rightDoor,
     startButton,
     UP
 } from './constants.js';
@@ -25,7 +23,7 @@ startButton.addEventListener('click', () => {
     infosButton.style.display = 'none';
     creditButton.style.display = 'none';
     gameName.style.display = 'none';
-    start(1);
+    start(2);
 });
 
 creditButton.addEventListener('click', () => {
@@ -72,9 +70,8 @@ async function loadInfo(id) {
 }
 
 function openModal(id) {
-    console.log(modal.children[0]);
     loadInfo(id).then(() => {
-        modal.children[0].children[0].children[0].innerText =
+        modal.children[0].children[0].children[1].innerText =
             "Dis moi PacSida, qu'est ce que " + title;
         modal.children[0].children[1].children[0].innerHTML = desc;
         toggleModal();
@@ -249,14 +246,14 @@ function update() {
     for (let i = 0; i < ghosts.length; i++) {
         last_x = ghosts[i].pos_x;
         last_y = ghosts[i].pos_y;
-        ghosts[i].followPacman(pacman);
-        if (ghosts[i].direction == 2) {
+        let random = Math.floor(Math.random() * 4);
+        if (random == 0) {
             ghosts[i].moveUp();
-        } else if (ghosts[i].direction == 0) {
+        } else if (random == 1) {
             ghosts[i].moveLeft();
-        } else if (ghosts[i].direction == 3) {
+        } else if (random == 2) {
             ghosts[i].moveDown();
-        } else if (ghosts[i].direction == 1) {
+        } else if (random == 3) {
             ghosts[i].moveRight();
         }
         //if ghost move into pacman
@@ -266,23 +263,47 @@ function update() {
                 ghosts[i].die();
                 last_x = ghosts[i].pos_x;
                 last_y = ghosts[i].pos_y;
-                score += 100;
-            } else {
-                //game over
-                return false;
+                ghosts[i].followPacman(pacman);
+                if (ghosts[i].direction == 2) {
+                    ghosts[i].moveUp();
+                } else if (ghosts[i].direction == 0) {
+                    ghosts[i].moveLeft();
+                } else if (ghosts[i].direction == 3) {
+                    ghosts[i].moveDown();
+                } else if (ghosts[i].direction == 1) {
+                    ghosts[i].moveRight();
+                }
+                //if ghost move into pacman
+                if (board.isPacman(ghosts[i])) {
+                    if (pacman.isPoweredUp()) {
+                        //eat ghost
+                        ghosts[i].die();
+                        last_x = ghosts[i].pos_x;
+                        last_y = ghosts[i].pos_y;
+                        score += 100;
+                    } else {
+                        //game over
+                        return false;
+                    }
+                }
+                //check if ghost can move
+                if (!board.canMove(ghosts[i]) || !ghosts[i].canMove) {
+                    ghosts[i].pos_x = last_x;
+                    ghosts[i].pos_y = last_y;
+                }
+            }
+            //check if ghost can move
+            if (!board.canMove(ghosts[i]) || !ghosts[i].canMove) {
+                ghosts[i].pos_x = last_x;
+                ghosts[i].pos_y = last_y;
             }
         }
-        //check if ghost can move
-        if (!board.canMove(ghosts[i]) || !ghosts[i].canMove) {
-            ghosts[i].pos_x = last_x;
-            ghosts[i].pos_y = last_y;
-        }
-    }
 
-    if (board.checkWin()) {
-        return true;
+        if (board.checkWin()) {
+            return true;
+        }
+        return 'continue';
     }
-    return 'continue';
 }
 
 function updateQuestion() {
@@ -320,7 +341,6 @@ function updateQuestion() {
             return false;
         }
     }
-    return 'continue';
 }
 
 function step() {
