@@ -27,10 +27,13 @@ function captchat(argument) {
   let g = Math.floor(Math.random() * 8);
   let done = [];
   selected = [];
+
   let capt = document.createElement("div");
   capt.classList.add("captchat_select");
   checkBox.style.backgroundColor = "white";
   checkBox.querySelector("#check_capt").classList.remove("check_valide");
+
+
 
   for (var i = 0; i < 9; i++) {
     if (i !== g) {
@@ -74,7 +77,14 @@ function captchat(argument) {
   btn_close.innerHTML = "X";
   btn_close.addEventListener("click", close);
 
+
+
   capt.appendChild(btn_close);
+
+  
+
+  setTimeout(function() {alert("Choisi une solution de lutte contre le VIH")}, 200)
+
   document.body.appendChild(capt);
 }
 
