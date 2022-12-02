@@ -20,27 +20,4 @@ export class Ghost extends Entity {
     setGhostSpeed(speed) {
         this.speed = speed;
     }
-
-    move() {
-        switch (this.direction) {
-            case 0:
-                this.move_left();
-                break;
-            case 1:
-                this.move_right();
-                break;
-            case 2:
-                this.move_up();
-                break;
-            case 3:
-                this.move_down();
-                break;
-        }
-    }
-
-    update() {
-        //random direction
-        this.direction = Math.floor(Math.random() * 4);
-        this.move();
-    }
 }

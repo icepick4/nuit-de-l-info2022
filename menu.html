@@ -11,10 +11,16 @@
 </head>
 
 <body>
-    <img src="./assets/menuTitle.svg" />
-    <button id="start"></button>
-    <button id="settings"></button>
-    <button id="infos"></button>
+    <div id="background"></div>
+    <div class="content">
+        <canvas id="canvas" width="992" height="672" style="display: none"></canvas>
+        <div class="buttons">
+            <img src="./assets/menuTitle.svg" id="gameName" />
+            <button id="start"></button>
+            <button id="settings"></button>
+            <button id="infos"></button>
+        </div>
+    </div>
     <div class="hidden-images">
         <div class="mobs">
             <img id="sida" src="assets/ghosts/sida.svg" />
