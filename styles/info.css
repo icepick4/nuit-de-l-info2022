@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Main font";
+  src: url("../assets/fonts/Inter-VariableFont_slnt,wght.ttf")
+    format("truetype");
+}
+
+* {
+  font-family: "Main font";
+}
+
+body {
+  background-image: url("../assets/back.svg");
+  background-size: cover;
+}
+
+.main{
+  background-color: rgba(255, 255, 255, .5);
+  width: 50%;
+  border-radius: 15px;
+}

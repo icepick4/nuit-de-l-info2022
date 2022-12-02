@@ -23,6 +23,7 @@ settingsButton.addEventListener("click", () => {
 
 infosButton.addEventListener("click", () => {
   console.log("infos");
+  document.location.href="/information.html"
 });
 
 let walls;
