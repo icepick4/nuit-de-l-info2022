@@ -209,14 +209,14 @@ button {
 
 #img1 {
   top: 50px;
-  left: 100px;
+  left: 10px;
   animation-delay: -50ms;
 }
 
 #img2 {
-  top: 300px;
-  left: 50px;
-  animation-delay: 5000ms;
+  top: 50px;
+  left: 700px;
+  animation-delay: -4000ms;
 }
 
 #img3 {
@@ -228,55 +228,55 @@ button {
 #img4 {
   top: 400px;
   left: 220px;
-  animation-delay: 1000ms;
+  animation-delay: -1000ms;
 }
 
 #img5 {
   top: 800px;
   left: 1020px;
-  animation-delay: 1000ms;
+  animation-delay: -7000ms;
 }
 
 #img6 {
   top: 500px;
   left: 1220px;
-  animation-delay: 1000ms;
+  animation-delay: -2000ms;
 }
 
 #img7 {
   top: 700px;
   left: 520px;
-  animation-delay: 1000ms;
+  animation-delay: -12000ms;
 }
 
 #img8 {
   top: 200px;
   left: 1420px;
-  animation-delay: 1000ms;
+  animation-delay: -3000ms;
 }
 
 #img9 {
   top: 100px;
   left: 1020px;
-  animation-delay: 1000ms;
+  animation-delay: -1000ms;
 }
 
 #img10 {
   top: 600px;
   left: 120px;
-  animation-delay: 1000ms;
+  animation-delay: -2000ms;
 }
 
 #img11 {
   top: 500px;
   left: 820px;
-  animation-delay: 1000ms;
+  animation-delay: -8000ms;
 }
 
 #img12 {
   top: 100px;
   left: 320px;
-  animation-delay: 1000ms;
+  animation-delay: -10000ms;
 }
 
 .imgBack {
