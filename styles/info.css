@@ -21,7 +21,28 @@ body {
   margin: auto;
 }
 
+h1{
+  margin: auto;
+  width: fit-content;
+}
+
 h3{
   padding: 0px;
   text-transform: capitalize;
+}
+
+button {
+    position: fixed;
+    background-size: cover;
+    border: none;
+    background-repeat: no-repeat;
+    transition: transform 0.2s;
+    background-image: url("../assets/retour.svg");
+    width: 220px;
+    height: 90px;
+    border-radius: 15px;
+}
+
+button:hover {
+    transform: scale(1.1);
 }

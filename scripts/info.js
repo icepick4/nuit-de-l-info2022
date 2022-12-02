@@ -1,6 +1,11 @@
 const path = "/data/mst.json"
 const template =  document.querySelector('#info_t');
 const main = document.querySelector('.main');
+const btn_back = document.querySelector('#back');
+const loading = document.querySelector("#loading")
+btn_back.addEventListener("click",function() {
+	document.location.href="/"
+})
 
 function load() {
 	fetch(path)
@@ -33,6 +38,8 @@ function show(data) {
 		main.appendChild(tmp)
 
 	});
+
+	main.removeChild(loading)
 	
 }
 
