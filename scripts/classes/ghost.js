@@ -33,19 +33,4 @@ export class Ghost extends Entity {
     setGhostSpeed(speed) {
         this.speed = speed;
     }
-
-    moveTo(pacman) {
-        //move the ghost to the pacman
-        let x = pacman.pos_x - this.pos_x;
-        let y = pacman.pos_y - this.pos_y;
-        if (x > 0) {
-            this.direction = 1;
-        } else if (x < 0) {
-            this.direction = 0;
-        } else if (y > 0) {
-            this.direction = 3;
-        } else if (y < 0) {
-            this.direction = 2;
-        }
-    }
 }

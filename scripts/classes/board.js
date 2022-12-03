@@ -158,7 +158,7 @@ export class Board {
                     context.arc(
                         j * caseWidth + caseWidth / 2,
                         i * caseWidth + caseWidth / 2,
-                        caseWidth / 10,
+                        caseWidth / 8,
                         0,
                         2 * Math.PI
                     );

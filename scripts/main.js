@@ -152,7 +152,6 @@ function updateKeyUp(e) {
         (e.keyCode == RIGHT)
     ) {
         if (!startPlaying && !inGameMenu) {
-            console.log('start');
             startPlaying = true;
             step();
         } else {
@@ -214,7 +213,6 @@ function start(id) {
 }
 
 function update() {
-    console.log('update');
     let last_x = pacman.pos_x;
     let last_y = pacman.pos_y;
     if ((keys[UP] || lastDirection == UP) && board.canMove(pacman, UP)) {
@@ -237,7 +235,7 @@ function update() {
     }
     //check if pacman eat a point
     if (board.isPoint(pacman)) {
-        score += 20;
+        score += 10;
     }
     //check if pacman eat a pacgum
     if (board.isPacGum(pacman)) {
@@ -376,7 +374,6 @@ function step() {
                 openModal(board.getGhost(pacman));
             } else if (status == true) {
                 board.drawBoardCanvas();
-                console.log('initQuestion');
                 initQuestion();
             }
         } else {
@@ -388,7 +385,6 @@ function step() {
                 board.drawBoardCanvas();
                 clearInterval(interval);
                 modal.children[0].children[0].children[0].innerText = 'Perdu';
-                console.log(question);
                 modal.children[0].children[1].children[0].innerHTML =
                     '<p> ' + question.response + '</p>';
                 reset();
@@ -452,19 +448,19 @@ function initQuestion() {
 }
 
 onkeyup = (e) => {
-    if (e.shiftKey && e.key === 'J') {
+    if (e.shiftKey && e.key === 'J' && !startPlaying) {
         startButton.click();
     }
 
-    if (e.shiftKey && e.key === 'C') {
+    if (e.shiftKey && e.key === 'C' && !startPlaying) {
         creditButton.click();
     }
 
-    if (e.shiftKey && e.key === 'I') {
+    if (e.shiftKey && e.key === 'I' && !startPlaying) {
         infosButton.click();
     }
 
-    if (e.shiftKey && e.key === 'X') {
+    if (e.shiftKey && e.key === 'X' && !startPlaying) {
         close.click();
     }
 };
