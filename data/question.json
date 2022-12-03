@@ -64,7 +64,7 @@
             },
 
             {
-                "question" : "Quel est le nombre total de personnes nouvellement infectées par le VIH en 2021 ?",
+                "question" : "Quel est le nombre total de personnes nouvellements infectées par le VIH en 2021 ?",
 
                 "responses" : ["3,4 millions","1,5 millions","2,7 millions"],
                 "idResponse" : 1,

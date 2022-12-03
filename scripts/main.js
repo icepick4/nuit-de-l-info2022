@@ -4,7 +4,6 @@ import { Pacman } from './classes/pacman.js';
 import {
     bottomDoor,
     capotes,
-    close,
     creditButton,
     DOWN,
     footer,
@@ -18,6 +17,7 @@ import {
     rightDoor,
     scoreContent,
     startButton,
+    topDoor,
     UP
 } from './constants.js';
 import { getGhosts, getPacGums } from './functions.js';
@@ -44,12 +44,13 @@ infosButton.addEventListener('click', () => {
 background.addEventListener('click', () => {
     toggleModal();
 });
-close.addEventListener('click', () => {
-    toggleModal();
-});
 
 let title;
 let desc;
+let transmissions;
+let symptoms;
+let detection;
+let treatments;
 let copyModale = modal.cloneNode(true);
 
 function toggleModal() {
@@ -68,6 +69,10 @@ async function loadInfo(id) {
             let data = await response.json();
             title = data.data[id].name;
             desc = data.data[id].description;
+            transmissions = data.data[id].transmissions;
+            symptoms = data.data[id].symptoms;
+            detection = data.data[id].detection;
+            treatments = data.data[id].treatments;
         } else {
             throw new Error('Response error.');
         }
@@ -84,7 +89,8 @@ function openModal(id) {
             "... mais dis moi PacSida, qu'est ce que " +
             title +
             ' ?';
-        modal.children[0].children[1].children[0].innerHTML = desc;
+        modal.children[0].children[1].children[0].innerHTML =
+            desc + transmissions + symptoms + detection + treatments;
         toggleModal();
     });
 }
@@ -154,21 +160,11 @@ function updateKeyUp(e) {
         if (!startPlaying && !inGameMenu) {
             startPlaying = true;
             step();
-        } else {
-            if (e.keyCode == UP) {
-                //focus modalBody and scroll in it
-                modalBody.focus();
-                modalBody.scrollTop -= 25;
-            }
-            if (e.keyCode == DOWN) {
-                //scroll down
-                modalBody.scrollTop += 25;
-            }
         }
         lastDirection = e.keyCode;
         keys[e.keyCode] = false;
     }
-    if (e.keyCode == 13 && inGameMenu) {
+    if (e.keyCode == 13 && (inGameMenu || inQuestion)) {
         if (background.classList.contains('show')) {
             toggleModal();
         }
@@ -185,6 +181,16 @@ function updateKeyDown(e) {
     ) {
         if (startPlaying) {
             keys[e.keyCode] = true;
+        } else {
+            if (e.keyCode == UP) {
+                //focus modalBody and scroll in it
+                modalBody.focus();
+                modalBody.scrollTop -= 25;
+            }
+            if (e.keyCode == DOWN) {
+                //scroll down
+                modalBody.scrollTop += 25;
+            }
         }
     }
 }
@@ -358,6 +364,10 @@ function updateQuestion() {
             return false;
         }
     }
+    if (pacman.pos_x == topDoor[0] && pacman.pos_y == topDoor[1]) {
+        initQuestion();
+    }
+
     board.setCase(new Entity(last_x, last_y));
     board.setCase(pacman);
     return 'continue';
@@ -424,7 +434,6 @@ function reset() {
 
 function initQuestion() {
     board.initQuestionBoard();
-
     pacman.pos_x = 15;
     pacman.pos_y = 15;
     board.setCase(pacman);
@@ -440,6 +449,9 @@ function initQuestion() {
             '</p>' +
             '<p> Bas : ' +
             question.responses[2] +
+            '</p>' +
+            '<p> Haut : ' +
+            'Réafficher la question' +
             '</p>';
         toggleModal();
     });
@@ -458,10 +470,6 @@ onkeyup = (e) => {
 
     if (e.shiftKey && e.key === 'I' && !startPlaying) {
         infosButton.click();
-    }
-
-    if (e.shiftKey && e.key === 'X' && !startPlaying) {
-        close.click();
     }
 };
 

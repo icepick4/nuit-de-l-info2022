@@ -4,6 +4,7 @@ export let caseWidth = canvas.width / 31;
 canvas.height = caseWidth * 21;
 
 export const context = canvas.getContext('2d');
+context.font = '30px Arial';
 
 export const startButton = document.getElementById('start');
 
@@ -25,7 +26,6 @@ export const gameName = document.getElementById('gameName');
 export const background = document.getElementById('background');
 export var modal = document.getElementById('modal');
 export let modalBody = document.getElementsByClassName('modal-body')[0];
-export const close = document.getElementById('close');
 export const capotes = document.getElementsByClassName('capote');
 
 export const UP = 38;
@@ -36,3 +36,4 @@ export const RIGHT = 39;
 export const leftDoor = [0, 10];
 export const rightDoor = [30, 10];
 export const bottomDoor = [15, 20];
+export const topDoor = [15, 0];

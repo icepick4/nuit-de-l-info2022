@@ -10,6 +10,7 @@ import {
     pacmanImage,
     RIGHT,
     rightDoor,
+    topDoor,
     UP,
     wallImage
 } from '../constants.js';
@@ -27,6 +28,7 @@ export class Board {
         this.initBoard();
         this.ghosts = [];
         this.pacman = pacman;
+        this.inQuestion = false;
     }
 
     initBoard() {
@@ -47,7 +49,7 @@ export class Board {
                     this.board[i][j] = 'WALL';
                 } else {
                     //point for pacman
-                    this.board[i][j] = 'POINT';
+                    // this.board[i][j] = 'POINT';
                 }
                 if (i == 8 && j == 15) {
                     this.board[i][j] = 'EMPTY';
@@ -67,6 +69,7 @@ export class Board {
     }
 
     initQuestionBoard() {
+        this.inQuestion = true;
         //init the board with questions
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board[i].length; j++) {
@@ -82,6 +85,9 @@ export class Board {
                     this.board[i][j] = 'EMPTY';
                 }
                 if (bottomDoor[1] == i && bottomDoor[0] == j) {
+                    this.board[i][j] = 'EMPTY';
+                }
+                if (topDoor[1] == i && topDoor[0] == j) {
                     this.board[i][j] = 'EMPTY';
                 }
             }
@@ -175,6 +181,13 @@ export class Board {
                 currentGhost.pos_y * caseWidth,
                 caseWidth,
                 caseWidth
+            );
+        }
+        if (this.inQuestion) {
+            context.fillText(
+                'Réafficher la question',
+                canvas.width / 2 - 150,
+                100
             );
         }
     }
