@@ -12,14 +12,24 @@ export function increaseGhostsSpeed(ghosts, speed) {
     });
 }
 
-export function getGhosts(ghostSpeed, ghostPosition) {
+export function getGhosts(ghostPosition) {
     let ghosts = [];
+    const mobs = document.getElementById('mobs').children;
+    const mobsImages = [];
+    let indexes = [];
+    for (let i = 0; i < mobs.length; i++) {
+        //random number between 0 and mobs.length
+        const random = Math.floor(Math.random() * mobs.length);
+        //add the random image to the array
+        mobsImages.push(mobs[random]);
+        indexes.push(random);
+    }
     for (let i = 0; i < ghostPosition.length; i++) {
         let ghost = new Ghost(
             ghostPosition[i][0],
             ghostPosition[i][1],
-            i,
-            ghostSpeed
+            indexes[i],
+            mobsImages[i]
         );
         ghosts.push(ghost);
     }

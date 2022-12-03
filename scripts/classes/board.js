@@ -1,16 +1,20 @@
 import {
     bottomDoor,
     canvas,
-    caseWidth,
     context,
-    ghostImages,
+    DOWN,
+    LEFT,
     leftDoor,
     pacGumImage,
     pacmanCapoteImage,
     pacmanImage,
+    RIGHT,
     rightDoor,
+    UP,
     wallImage
 } from '../constants.js';
+
+import { caseWidth } from '../main.js';
 
 export class Board {
     constructor(walls, emptyCase, pacman) {
@@ -152,9 +156,9 @@ export class Board {
                 } else if (this.board[i][j] == 'POINT') {
                     context.beginPath();
                     context.arc(
-                        j * caseWidth + 15,
-                        i * caseWidth + 15,
-                        3.3,
+                        j * caseWidth + caseWidth / 2,
+                        i * caseWidth + caseWidth / 2,
+                        caseWidth / 10,
                         0,
                         2 * Math.PI
                     );
@@ -166,7 +170,7 @@ export class Board {
         for (let i = 0; i < this.ghosts.length; i++) {
             let currentGhost = this.ghosts[i];
             context.drawImage(
-                ghostImages[currentGhost.id],
+                this.ghosts[i].image,
                 currentGhost.pos_x * caseWidth,
                 currentGhost.pos_y * caseWidth,
                 caseWidth,
@@ -175,28 +179,28 @@ export class Board {
         }
     }
 
-    canMove(entity) {
-        //check if the entity can move
+    canMove(entity, direction) {
+        //check if the entity can move in the direction
         let pos_x = entity.pos_x;
         let pos_y = entity.pos_y;
-        if (entity.direction == 0) {
-            pos_x -= 1;
-        } else if (entity.direction == 1) {
-            pos_x += 1;
-        } else if (entity.direction == 2) {
-            pos_y -= 1;
-        } else if (entity.direction == 3) {
-            pos_y += 1;
-        }
-        try {
-            if (this.board[pos_y][pos_x] == 'WALL') {
+        if (direction == UP) {
+            if (this.board[pos_y - 1][pos_x] == 'WALL') {
                 return false;
-            } else {
-                return true;
             }
-        } catch {
-            return false;
+        } else if (direction == DOWN) {
+            if (this.board[pos_y + 1][pos_x] == 'WALL') {
+                return false;
+            }
+        } else if (direction == LEFT) {
+            if (this.board[pos_y][pos_x - 1] == 'WALL') {
+                return false;
+            }
+        } else if (direction == RIGHT) {
+            if (this.board[pos_y][pos_x + 1] == 'WALL') {
+                return false;
+            }
         }
+        return true;
     }
 
     isPacGum(entity) {

@@ -7,13 +7,16 @@ import {
     close,
     creditButton,
     DOWN,
+    footer,
     gameName,
     infosButton,
     LEFT,
     leftDoor,
     modal,
+    modalBody,
     RIGHT,
     rightDoor,
+    scoreContent,
     startButton,
     UP
 } from './constants.js';
@@ -25,7 +28,8 @@ startButton.addEventListener('click', () => {
     infosButton.style.display = 'none';
     creditButton.style.display = 'none';
     gameName.style.display = 'none';
-    id = 3;
+    id = Math.floor(Math.random() * 3) + 1;
+    inGameMenu = false;
     start(id);
 });
 
@@ -103,6 +107,8 @@ let interval;
 let inQuestion = false;
 let currentQuestion;
 let question;
+let inGameMenu = false;
+export let caseWidth = canvas.width / 31;
 
 async function loadLevel(id) {
     try {
@@ -112,10 +118,8 @@ async function loadLevel(id) {
             let data = await response.json();
             walls = data.walls;
             emptyCase = data.emptyCase;
-            pacmanSpeed = data.pacmanSpeed;
             pacmanPosition = data.pacmanPosition;
             pacGumPosition = data.pacGumPosition;
-            ghostSpeed = data.ghostSpeed;
             ghostPosition = data.ghostPosition;
         } else {
             throw new Error('Response error.');
@@ -147,14 +151,25 @@ function updateKeyUp(e) {
         (e.keyCode == DOWN) |
         (e.keyCode == RIGHT)
     ) {
-        if (!startPlaying) {
+        if (!startPlaying && !inGameMenu) {
+            console.log('start');
             startPlaying = true;
             step();
+        } else {
+            if (e.keyCode == UP) {
+                //focus modalBody and scroll in it
+                modalBody.focus();
+                modalBody.scrollTop -= 25;
+            }
+            if (e.keyCode == DOWN) {
+                //scroll down
+                modalBody.scrollTop += 25;
+            }
         }
         lastDirection = e.keyCode;
         keys[e.keyCode] = false;
     }
-    if (e.keyCode == 13) {
+    if (e.keyCode == 13 && inGameMenu) {
         if (background.classList.contains('show')) {
             toggleModal();
         }
@@ -177,12 +192,14 @@ function updateKeyDown(e) {
 document.body.addEventListener('keydown', updateKeyDown);
 
 function start(id) {
+    footer.style.display = 'none';
     loadLevel(id).then(() => {
         pacman = new Pacman(pacmanPosition[0], pacmanPosition[1], pacmanSpeed);
         board = new Board(walls, emptyCase, pacman);
         board.initLevel();
         board.setCase(pacman);
-        ghosts = getGhosts(ghostSpeed, ghostPosition);
+
+        ghosts = getGhosts(ghostPosition);
         for (let i = 0; i < ghosts.length; i++) {
             board.ghosts.push(ghosts[i]);
         }
@@ -193,22 +210,34 @@ function start(id) {
         board.drawBoardCanvas();
     });
     score = 0;
+    scoreContent.style.display = 'block';
 }
 
 function update() {
     console.log('update');
     let last_x = pacman.pos_x;
     let last_y = pacman.pos_y;
-    //pacman can go in the opposite direction, if direction is the same as last direction then use it
-    if (keys[UP] || lastDirection == UP) {
+    if ((keys[UP] || lastDirection == UP) && board.canMove(pacman, UP)) {
         pacman.moveUp();
-    } else if (keys[LEFT] || lastDirection == LEFT) {
+    } else if (
+        (keys[LEFT] || lastDirection == LEFT) &&
+        board.canMove(pacman, LEFT)
+    ) {
         pacman.moveLeft();
-    } else if (keys[DOWN] || lastDirection == DOWN) {
+    } else if (
+        (keys[DOWN] || lastDirection == DOWN) &&
+        board.canMove(pacman, DOWN)
+    ) {
         pacman.moveDown();
-    } else if (keys[RIGHT] || lastDirection == RIGHT) {
-        console.log('right');
+    } else if (
+        (keys[RIGHT] || lastDirection == RIGHT) &&
+        board.canMove(pacman, RIGHT)
+    ) {
         pacman.moveRight();
+    }
+    //check if pacman eat a point
+    if (board.isPoint(pacman)) {
+        score += 20;
     }
     //check if pacman eat a pacgum
     if (board.isPacGum(pacman)) {
@@ -230,39 +259,42 @@ function update() {
                     ghosts[i].die();
                 }
             }
-
-            score += 100;
+            score += 200;
         } else {
             //game over
             return false;
         }
     }
-    //check if pacman can move
-    if (board.canMove(pacman)) {
-        board.setCase(pacman);
-        board.setCase(new Entity(last_x, last_y));
-    } else {
-        pacman.pos_x = last_x;
-        pacman.pos_y = last_y;
-    }
-    //check if pacman eat a point
-    if (board.isPoint(pacman)) {
-        score++;
-    }
+    //set new position
+    board.setCase(new Entity(last_x, last_y));
+    board.setCase(pacman);
 
     for (let i = 0; i < ghosts.length; i++) {
         last_x = ghosts[i].pos_x;
         last_y = ghosts[i].pos_y;
         let random = Math.floor(Math.random() * 4);
-        if (random == 0) {
-            ghosts[i].moveUp();
-        } else if (random == 1) {
-            ghosts[i].moveLeft();
-        } else if (random == 2) {
-            ghosts[i].moveDown();
-        } else if (random == 3) {
-            ghosts[i].moveRight();
+        let ghostMove = false;
+        while (!ghostMove && ghosts[i].canMove) {
+            random = Math.floor(Math.random() * 4);
+            if (random == 0 && board.canMove(ghosts[i], UP)) {
+                ghosts[i].moveUp();
+                ghostMove = true;
+            } else if (random == 1 && board.canMove(ghosts[i], LEFT)) {
+                ghosts[i].moveLeft();
+                ghostMove = true;
+            } else if (random == 2 && board.canMove(ghosts[i], DOWN)) {
+                ghosts[i].moveDown();
+                ghostMove = true;
+            } else if (random == 3 && board.canMove(ghosts[i], RIGHT)) {
+                ghosts[i].moveRight();
+                ghostMove = true;
+            }
         }
+        if (ghosts[i].pos_x != last_x || ghosts[i].pos_y != last_y) {
+            board.setCase(ghosts[i]);
+            board.setCase(new Entity(last_x, last_y));
+        }
+
         //if ghost move into pacman
         if (board.isPacman(ghosts[i])) {
             if (pacman.isPoweredUp()) {
@@ -274,11 +306,6 @@ function update() {
                 //game over
                 return false;
             }
-        }
-        //check if ghost can move
-        if (!board.canMove(ghosts[i]) || !ghosts[i].canMove) {
-            ghosts[i].pos_x = last_x;
-            ghosts[i].pos_y = last_y;
         }
     }
 
@@ -292,13 +319,21 @@ function updateQuestion() {
     let last_x = pacman.pos_x;
     let last_y = pacman.pos_y;
     if (keys[UP] || lastDirection == UP) {
-        pacman.moveUp();
+        if (board.canMove(pacman, UP)) {
+            pacman.moveUp();
+        }
     } else if (keys[LEFT] || lastDirection == LEFT) {
-        pacman.moveLeft();
+        if (board.canMove(pacman, LEFT)) {
+            pacman.moveLeft();
+        }
     } else if (keys[DOWN] || lastDirection == DOWN) {
-        pacman.moveDown();
+        if (board.canMove(pacman, DOWN)) {
+            pacman.moveDown();
+        }
     } else if (keys[RIGHT] || lastDirection == RIGHT) {
-        pacman.moveRight();
+        if (board.canMove(pacman, RIGHT)) {
+            pacman.moveRight();
+        }
     }
     //detect pacman is in leftdoor or rightdoor or bottomdoor
     if (pacman.pos_x == leftDoor[0] && pacman.pos_y == leftDoor[1]) {
@@ -325,13 +360,8 @@ function updateQuestion() {
             return false;
         }
     }
-    if (board.canMove(pacman)) {
-        board.setCase(pacman);
-        board.setCase(new Entity(last_x, last_y));
-    } else {
-        pacman.pos_x = last_x;
-        pacman.pos_y = last_y;
-    }
+    board.setCase(new Entity(last_x, last_y));
+    board.setCase(pacman);
     return 'continue';
 }
 
@@ -342,8 +372,8 @@ function step() {
             if (status == false) {
                 board.drawBoardCanvas();
                 clearInterval(interval);
-                openModal(board.getGhost(pacman));
                 reset();
+                openModal(board.getGhost(pacman));
             } else if (status == true) {
                 board.drawBoardCanvas();
                 console.log('initQuestion');
@@ -361,8 +391,8 @@ function step() {
                 console.log(question);
                 modal.children[0].children[1].children[0].innerHTML =
                     '<p> ' + question.response + '</p>';
-                toggleModal();
                 reset();
+                toggleModal();
             } else if (status == true) {
                 inQuestion = false;
                 board.drawBoardCanvas();
@@ -376,6 +406,7 @@ function step() {
             }
         }
         board.drawBoardCanvas();
+        scoreContent.innerHTML = 'Score : ' + score;
     }, 200);
 }
 
@@ -385,8 +416,14 @@ function reset() {
     infosButton.style.display = 'block';
     creditButton.style.display = 'block';
     gameName.style.display = 'block';
+    footer.style.display = 'flex';
     canvas.style.display = 'none';
     inQuestion = false;
+    inGameMenu = true;
+    scoreContent.style.display = 'none';
+    score = 0;
+    lastDirection = null;
+    scoreContent.innerHTML = 'Score : ' + score;
 }
 
 function initQuestion() {
@@ -435,3 +472,10 @@ onkeyup = (e) => {
 document.onselectstart = new Function('return false');
 document.oncontextmenu = new Function('return false');
 document.body.style.pointerEvents = 'none';
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth * 0.7;
+    caseWidth = canvas.width / 31;
+    canvas.height = caseWidth * 21;
+    board.drawBoardCanvas();
+});

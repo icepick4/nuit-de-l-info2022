@@ -89,9 +89,7 @@
     ],
     "emptyCase": [
     ],
-    "pacmanSpeed": 1,
     "pacmanPosition": [15, 15],
-    "ghostSpeed": 1,
     "ghostPosition": [
       [14, 9],
       [16, 9],

@@ -21,7 +21,10 @@ html {
 #canvas {
     border-radius: 15px;
     background-color: #ede498;
-    margin-top: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .content {
@@ -81,6 +84,17 @@ footer p {
     100% {
         transform: scale(1)
     }
+}
+
+#score {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
 }
 
 .buttons {
@@ -169,6 +183,16 @@ button {
     align-items: center;
     width: 100%;
     position: relative;
+}
+
+.modal-body {
+    margin: 4px, 4px;
+    padding: 4px;
+    width: auto;
+    height: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
 }
 
 #gameOver {
