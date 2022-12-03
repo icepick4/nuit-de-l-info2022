@@ -44,3 +44,9 @@ export function getPacGums(pacGumPosition) {
     }
     return pacGums;
 }
+
+export function audio(src, volume) {
+    let audio = new Audio(src);
+    audio.volume = volume;
+    audio.play();
+}

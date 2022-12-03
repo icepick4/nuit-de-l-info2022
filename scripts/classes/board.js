@@ -123,6 +123,13 @@ export class Board {
     drawBoardCanvas() {
         context.clearRect(0, 0, canvas.width, canvas.height);
         //draw the board
+        if (this.inQuestion) {
+            context.fillText(
+                'Réafficher la question',
+                canvas.width / 2 - 150,
+                100
+            );
+        }
         for (let i = 0; i < this.board.length; i++) {
             for (let j = 0; j < this.board[i].length; j++) {
                 if (this.board[i][j] == 'WALL') {
@@ -181,13 +188,6 @@ export class Board {
                 currentGhost.pos_y * caseWidth,
                 caseWidth,
                 caseWidth
-            );
-        }
-        if (this.inQuestion) {
-            context.fillText(
-                'Réafficher la question',
-                canvas.width / 2 - 150,
-                100
             );
         }
     }

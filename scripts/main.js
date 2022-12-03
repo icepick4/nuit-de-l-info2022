@@ -20,7 +20,7 @@ import {
     topDoor,
     UP
 } from './constants.js';
-import { getGhosts, getPacGums } from './functions.js';
+import { audio, getGhosts, getPacGums } from './functions.js';
 let id;
 startButton.addEventListener('click', () => {
     canvas.style.display = 'block';
@@ -51,7 +51,6 @@ let transmissions;
 let symptoms;
 let detection;
 let treatments;
-let copyModale = modal.cloneNode(true);
 
 function toggleModal() {
     background.classList.toggle('show');
@@ -97,8 +96,6 @@ function openModal(id) {
 
 let walls;
 let emptyCase;
-let pacmanSpeed;
-let ghostSpeed;
 let ghostPosition;
 let pacmanPosition;
 let pacGumPosition;
@@ -111,9 +108,9 @@ let lastDirection = null;
 let score;
 let interval;
 let inQuestion = false;
-let currentQuestion;
 let question;
 let inGameMenu = false;
+
 export let caseWidth = canvas.width / 31;
 
 async function loadLevel(id) {
@@ -199,7 +196,7 @@ document.body.addEventListener('keydown', updateKeyDown);
 function start(id) {
     footer.style.display = 'none';
     loadLevel(id).then(() => {
-        pacman = new Pacman(pacmanPosition[0], pacmanPosition[1], pacmanSpeed);
+        pacman = new Pacman(pacmanPosition[0], pacmanPosition[1]);
         board = new Board(walls, emptyCase, pacman);
         board.initLevel();
         board.setCase(pacman);
@@ -246,6 +243,7 @@ function update() {
     //check if pacman eat a pacgum
     if (board.isPacGum(pacman)) {
         pacman.atePowerUp();
+        audio('../assets/sounds/powerUp.wav', 0.3);
         //pacman is poweredUp for 10 seconds
         setTimeout(() => {
             pacman.lostPowerUp();
@@ -378,6 +376,7 @@ function step() {
         if (!inQuestion) {
             let status = update();
             if (status == false) {
+                audio('../assets/sounds/death.wav', 1);
                 board.drawBoardCanvas();
                 clearInterval(interval);
                 reset();
