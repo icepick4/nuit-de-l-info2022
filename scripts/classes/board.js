@@ -49,7 +49,7 @@ export class Board {
                     this.board[i][j] = 'WALL';
                 } else {
                     //point for pacman
-                    // this.board[i][j] = 'POINT';
+                    this.board[i][j] = 'POINT';
                 }
                 if (i == 8 && j == 15) {
                     this.board[i][j] = 'EMPTY';
