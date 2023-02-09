@@ -1,10 +1,10 @@
-# nuit-de-l-info2022
+<div align="center">
+<img width=400 src="https://www.nuitdelinfo.com/materiel_communication/2022/visuelSVG/N2I2022-couleurs.svg">
+</div>
 
-Nuit de l'info 2022
+
 
 ## Défis
-
-### Défi 1
 
 -   AXOCapt'Challenge :
     Dans la page informations, il y a un captcha qui est utilisé pour vérifier que l'utilisateur est bien un humain. Il faut trouver la case vous protégeant des IST pour valider le captcha.
