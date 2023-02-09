@@ -18,7 +18,7 @@ Le jeu se base sur le concept classique de Pacman, avec Puck-Man remplacé par u
 
 
 
-## Fonctionnalités
+## :joystick: Fonctionnalités
 
 Le but du jeu est de manger toutes les petites boules dans le labyrinthe pour terminer un niveau. Les fantômes originaux ont été remplacés par différentes MST qui se déplacent de manière aléatoire. Si le joueur touche une MST, il perd le niveau. Le joueur peut se protéger temporairement en prenant une capote.
 </br></br>
@@ -26,7 +26,7 @@ Le but du jeu est de manger toutes les petites boules dans le labyrinthe pour te
 </br></br>
 Une page d'éducation est également disponible pour aider le joueur à mieux comprendre les MST et à se préparer pour répondre aux questions.
 
-<img width=300 src="assets/screen.png">
+<img width=700 src="assets/screen.png">
 
 ## :page_with_curl: Défis
 
